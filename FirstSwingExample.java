@@ -56,6 +56,7 @@ public class FirstSwingExample {
         f.add(b); //Adding button in JFrame
 
 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setSize(560, 600);
         f.setLayout(null);
         f.setVisible(true);
