@@ -1,3 +1,5 @@
+package vtracker;
+
 import javax.swing.*;
 
 /**
@@ -5,18 +7,18 @@ import javax.swing.*;
  * This is the main class for application.
  *
  */
-public class ValorantTracker {
+public class ValorantTracker extends JFrame {
      ValorantTracker() {
+         super("ValorantTracker");
 
-         JFrame jfrm  = new JFrame("ValorantTracker");
-         jfrm.setSize(400,150);
-         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.setSize(400,150);
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
          JLabel test = new JLabel("Win % 100!");
 
-         jfrm.add(test);
+         this.add(test);
 
-         jfrm.setVisible(true);
+         this.setVisible(true);
 
          test.setText(String.valueOf(SwingUtilities.isEventDispatchThread()));
 
