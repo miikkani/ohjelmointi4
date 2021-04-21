@@ -11,14 +11,14 @@ public class FirstSwingExample {
 
         JFrame f = new JFrame("Valorant Tracker"); //Creating instance of JFrame
 
+        JLabel agentwinp = new JLabel();
+        agentwinp.setBounds(20, 100, 500, 400);
+        agentwinp.setText("Astra: " + astrawinp + "%");
+
         JTextField winp = new JTextField();
         winp.setBounds(20,20, 500, 60);
         winp.setText("POINTLESS TEXTFIELD!");
         winp.setFont(winp.getFont().deriveFont(40.0f));
-
-        JLabel agentwinp = new JLabel();
-        agentwinp.setBounds(20, 100, 500, 400);
-        agentwinp.setText("Astra: " + astrawinp + "%");
 
         String data[][]={{"Astra",astrawinp + "%"}, //
         {"Breach","53%"},
