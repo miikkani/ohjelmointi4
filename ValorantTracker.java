@@ -18,6 +18,8 @@ public class ValorantTracker {
 
          jfrm.setVisible(true);
 
+         test.setText(String.valueOf(SwingUtilities.isEventDispatchThread()));
+
 
     }
 
