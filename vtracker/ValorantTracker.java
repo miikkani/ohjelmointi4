@@ -1,6 +1,7 @@
 package vtracker;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 import vtracker.data.*;
@@ -14,7 +15,7 @@ public class ValorantTracker extends JFrame {
      ValorantTracker() {
          super("ValorantTracker");
 
-         this.setSize(560,600);
+         this.setSize(460,460);
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
          /*********************************
@@ -30,22 +31,20 @@ public class ValorantTracker extends JFrame {
 
 
 
-         //Overall Win Percentage Panel
+         /** Overall Win Percentage Panel **/
          int owinp = 52; //Replace with a method that fetches %
 
          JPanel owinpanel = new JPanel();
-         owinpanel.setPreferredSize(new Dimension(520,120));
          owinpanel.setBackground(Color.GRAY);
 
+         //Add label to the panel
          JLabel owinlabel = new JLabel();
          owinlabel.setText("Overall Win Percentage: " + owinp + "%");
-         owinlabel.setFont(owinlabel.getFont().deriveFont(40.0f));
+         owinlabel.setFont(owinlabel.getFont().deriveFont(30.0f));
          owinpanel.add(owinlabel);
 
-         //Agent Win Percentage Panel
-         JPanel awinpanel = new JPanel();
-         awinpanel.setPreferredSize(new Dimension(520, 320));
 
+         /** Agent Win Percentage Table **/
          int astrawinp = 52; //Replace with a method that fetches agent win %'s
          String data[][]={{"Astra",astrawinp + "%"},
                  {"Breach",53 + "%"},
@@ -63,16 +62,62 @@ public class ValorantTracker extends JFrame {
                  {"Viper", 45 + "%"},
                  {"Yoru", 41 + "%"}};
          String column[]={"Agent","Win Percentage"};
-         JTable agentwinptable = new JTable(data,column);
+
+         //Make the table uninteractive
+         JTable agentwinptable = new JTable(data,column){
+             @Override
+             public boolean isCellEditable(int row, int column) { //Override to make cells not editable
+                 return false;
+             }
+         };
          agentwinptable.setFocusable(false);
          agentwinptable.setRowSelectionAllowed(false);
-         JScrollPane sp = new JScrollPane(agentwinptable);
 
-         //Adding elemenets
-         this.setLayout(new GridLayout(3,1));
-         this.add(owinpanel);
-         this.add(sp);
+         //Headers start from left
+         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) agentwinptable.getTableHeader().getDefaultRenderer();
+         renderer.setHorizontalAlignment(JLabel.LEFT);
+
+         //Add the table to scrollpane
+         JScrollPane sp = new JScrollPane(agentwinptable);
+         sp.setPreferredSize((new Dimension(300, 263)));
+
+
+         /** Buttons **/
+         JButton addbutton = new JButton("Add Match");
+         JButton delbutton = new JButton("Delete Latest");
+         JButton delallbutton = new JButton("Delete All");
+
+
+         /** GridBagLayout **/
+         GridBagLayout layout = new GridBagLayout();
+         GridBagConstraints gbc = new GridBagConstraints();
+         this.setLayout(layout);
+
+         gbc.fill = GridBagConstraints.HORIZONTAL;
+         gbc.insets = new Insets(5,5,5,5);
+         gbc.gridx = 0;
+         gbc.gridy = 0;
+         gbc.gridwidth = 4;
+         this.add(owinpanel,gbc); //Overall Win Percentage panel added
+         gbc.gridx = 0;
+         gbc.gridy = 1;
+         this.add(sp,gbc); //Agent Win Percentage panel added
+         gbc.gridx = 0;
+         gbc.gridy = 2;
+         gbc.gridwidth = 1;
+         gbc.fill = GridBagConstraints.NONE;
+         gbc.anchor = GridBagConstraints.WEST;
+         this.add(addbutton, gbc); //Add Match button added
+         gbc.gridx = 1;
+         gbc.gridy = 2;
+         this.add(delbutton, gbc); //Delete Latest button added
+         gbc.gridx = 3;
+         gbc.gridy = 2;
+         gbc.anchor = GridBagConstraints.EAST;
+         this.add(delallbutton, gbc); //Delete All button added
+
          this.setVisible(true);
+
     }
 
 
