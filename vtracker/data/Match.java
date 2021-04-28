@@ -1,20 +1,26 @@
 package vtracker.data;
 
 public class Match {
-    private static int id;
-    private final Agent agent;
+    private static int count;
+    private int key;
+    private final String agent;
     private final MatchResult result;
 
     public Match(String agent, MatchResult result) {
-        id = ++id;
-        this.agent = new Agent(agent);
+        this.agent = agent;
         this.result = result;
+        count++;
+        key = count;
     }
 
 
+    public String getAgent(){return this.agent;}
+    public MatchResult getMatchResult(){return this.result;}
+    public int getKey(){return key;}
+
     @Override
     public String toString() {
-        return "Match #" + id
+        return "Match #" + key
                 + ": " + agent
                 + ", " + result;
     }

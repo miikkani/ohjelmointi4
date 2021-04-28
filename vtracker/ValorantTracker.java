@@ -4,6 +4,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
+import java.util.ArrayList;
+
+import java.text.NumberFormat;
+
 import vtracker.data.*;
 
 /**
@@ -15,23 +19,30 @@ public class ValorantTracker extends JFrame {
      ValorantTracker() {
          super("ValorantTracker");
 
+         // Initalize TestDatabase
+         AbstractDatabase db = TestDatabase.getInstance();
+
+         //Get matches from database
+         ArrayList<Match> matches = db.getMatches();
+
+         //test print
+         for(Match m : matches) {
+             System.out.println(m);
+         }
+
+         //test finding match
+         System.out.println("\nFinding match#2...found " + db.getMatch(2));
+
+
+
+
+
+         // build interface
          this.setSize(460,460);
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-         /*********************************
-          *********************************
-          * Miikka's testing
-          *
-            // 'connect' to database and get the match
-            AbstractDatabase db = new TestDatabase();
-            Match m = db.getMatch(1);
 
-          *********************************
-          *********************************/
-
-
-
-         /** Overall Win Percentage Panel **/
+         // Overall Win Percentage Panel
          int owinp = 52; //Replace with a method that fetches %
 
          JPanel owinpanel = new JPanel();
@@ -44,27 +55,31 @@ public class ValorantTracker extends JFrame {
          owinpanel.add(owinlabel);
 
 
-         /** Agent Win Percentage Table **/
-         int astrawinp = 52; //Replace with a method that fetches agent win %'s
-         String data[][]={{"Astra",astrawinp + "%"},
-                 {"Breach",53 + "%"},
-                 {"Brimstone", 54 + "%"},
-                 {"Cypher", 51 + "%"},
-                 {"Jett", 45 + "%"},
-                 {"Killjoy", 49 + "%"},
-                 {"Omen", 53 + "%"},
-                 {"Phoenix", 55 + "%"},
-                 {"Raze", 46 + "%"},
-                 {"Reyna", 51 + "%"},
-                 {"Sage", 52 + "%"},
-                 {"Skye", 44 + "%"},
-                 {"Sova", 58 + "%"},
-                 {"Viper", 45 + "%"},
-                 {"Yoru", 41 + "%"}};
-         String column[]={"Agent","Win Percentage"};
+         /**
+          * Agent Win Percentage Table
+          *
+          *  int astrawinp = 52; //Replace with a method that fetches agent win %'s
+          *  String data[][]={{"Astra",astrawinp + "%"},
+          *          {"Breach",53 + "%"},
+          *          {"Brimstone", 54 + "%"},
+          *          {"Cypher", 51 + "%"},
+          *          {"Jett", 45 + "%"},
+          *          {"Killjoy", 49 + "%"},
+          *          {"Omen", 53 + "%"},
+          *          {"Phoenix", 55 + "%"},
+          *          {"Raze", 46 + "%"},
+          *          {"Reyna", 51 + "%"},
+          *          {"Sage", 52 + "%"},
+          *          {"Skye", 44 + "%"},
+          *          {"Sova", 58 + "%"},
+          *          {"Viper", 45 + "%"},
+          *          {"Yoru", 41 + "%"}};
+          *  String column[]={"Agent","Win Percentage"};
+          */
+          String[] column ={"Agent","Win Percentage"};
 
          //Make the table uninteractive
-         JTable agentwinptable = new JTable(data,column){
+         JTable agentwinptable = new JTable(getStats(matches),column){
              @Override
              public boolean isCellEditable(int row, int column) { //Override to make cells not editable
                  return false;
@@ -120,6 +135,43 @@ public class ValorantTracker extends JFrame {
 
     }
 
+    public String[][] getStats(ArrayList<Match> matches) {
+        NumberFormat nf = NumberFormat.getPercentInstance();
+        nf.setMaximumFractionDigits(2);
+
+
+        int rows = matches.size();
+        String[][] data = new String[matches.size()][2];
+
+        for(int i=0;i < rows; i++){
+             data[i][0] = matches.get(i).getAgent();
+             double winp = Math.random();
+
+             data[i][1] = nf.format(winp);
+
+        }
+
+
+
+//        int astrawinp = 52; //Replace with a method that fetches agent win %'s
+//        String[][] data ={{"Astra",astrawinp + "%"},
+//                {"Breach",53 + "%"},
+//                {"Brimstone", 54 + "%"},
+//                {"Cypher", 51 + "%"},
+//                {"Jett", 45 + "%"},
+//                {"Killjoy", 49 + "%"},
+//                {"Omen", 53 + "%"},
+//                {"Phoenix", 55 + "%"},
+//                {"Raze", 46 + "%"},
+//                {"Reyna", 51 + "%"},
+//                {"Sage", 52 + "%"},
+//                {"Skye", 44 + "%"},
+//                {"Sova", 58 + "%"},
+//                {"Viper", 45 + "%"},
+//                {"Yoru", 41 + "%"}};
+
+        return data;
+    }
 
 
     public static void main(String[] args) {

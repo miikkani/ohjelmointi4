@@ -1,17 +1,48 @@
 package vtracker.data;
 
+import java.util.ArrayList;
+
 /**
  * Simple implementation to get sampledata to UI
  * components.
  */
 public class TestDatabase implements AbstractDatabase {
-    private Match match;
+    private final ArrayList<Match> match;
+    private static TestDatabase tdb;
 
-    public TestDatabase() {
-       match = new Match("Astra", MatchResult.WIN);
+    private TestDatabase() {
+        match = new ArrayList<>();
+
+        //Fill database. This is temporary.
+        match.add(new Match("Breach",MatchResult.WIN));
+        match.add(new Match("Cypher",MatchResult.DRAW));
+        match.add(new Match("Sage",MatchResult.LOSS));
+
     }
 
-   public Match getMatch(int id) {
+    /**
+     * Initializes new TestDatabase with test data or returns a reference if
+     * database already exists.
+     *
+     * @return tdb    a reference to a TestDatabase object
+     */
+    public static TestDatabase getInstance() {
+        if(tdb == null) {
+            tdb = new TestDatabase();
+        }
+        return tdb;
+    }
+
+
+
+
+    @Override
+    public ArrayList<Match> getMatches() {
         return this.match;
-   }
+    }
+
+    @Override
+    public Match getMatch(int id) {
+        return match.get(id-1);
+    }
 }
