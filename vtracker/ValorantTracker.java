@@ -3,12 +3,14 @@ package vtracker;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.util.ArrayList;
-
 import java.text.NumberFormat;
 
 import vtracker.data.*;
+import vtracker.ui.*;
 
 /**
  * ValorantTracker. Epic Application #1.
@@ -99,8 +101,31 @@ public class ValorantTracker extends JFrame {
 
          /** Buttons **/
          JButton addbutton = new JButton("Add Match");
+         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match");
+         addbutton.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 addmatchdialog.setVisible(true);
+             }
+         });
+
          JButton delbutton = new JButton("Delete Latest");
+         DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest");
+         delbutton.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 deletelatestdialog.setVisible(true);
+             }
+         });
+
          JButton delallbutton = new JButton("Delete All");
+         DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All");
+         delallbutton.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                deletealldialog.setVisible(true);
+             }
+         });
 
 
          /** GridBagLayout **/
@@ -131,6 +156,7 @@ public class ValorantTracker extends JFrame {
          gbc.anchor = GridBagConstraints.EAST;
          this.add(delallbutton, gbc); //Delete All button added
 
+         this.setLocationRelativeTo(null);
          this.setVisible(true);
 
     }
