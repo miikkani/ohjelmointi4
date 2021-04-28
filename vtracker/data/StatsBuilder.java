@@ -1,5 +1,8 @@
 package vtracker.data;
 
+import java.util.Map;
+import java.util.Hashtable;
+
 
 /**     !!Work In Progress!!
  *
@@ -11,6 +14,10 @@ package vtracker.data;
  */
 public class StatsBuilder {
     private double totalWP;
+    private Map<Agent,Double> agentsWinP;
+    private double overallWinP;
+
+    private AbstractDatabase db;
 
 
     /**
@@ -22,6 +29,9 @@ public class StatsBuilder {
 
 
     /**
+     *
+     */
+    /**
      * Maybe...
      */
     public double calculateWinPercent() {
@@ -32,7 +42,7 @@ public class StatsBuilder {
 
     /**
      * Calculates all percentages and updates internal data
-     * structures.
+     * structures. Make this run in own thread.
      *
      */
     public void updateStats() {
