@@ -6,7 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddMatchDialog extends JDialog{
-    public AddMatchDialog(Frame frame, String title){
+
+    public AddMatchDialog(Frame frame, String title, String[] agents){
         super(frame, title, true);
 
         /** Label texts **/
@@ -15,24 +16,25 @@ public class AddMatchDialog extends JDialog{
         JLabel outcomelabel = new JLabel();
         outcomelabel.setText("Select Outcome:");
 
-        /** Agent Selection List **/
-        final DefaultListModel<String>al = new DefaultListModel<>();
-            al.addElement("Astra");
-            al.addElement("Breach");
-            al.addElement("Brimstone");
-            al.addElement("Cypher");
-            al.addElement("Jett");
-            al.addElement("Killjoy");
-            al.addElement("Omen");
-            al.addElement("Phoenix");
-            al.addElement("Raze");
-            al.addElement("Reyna");
-            al.addElement("Sage");
-            al.addElement("Skye");
-            al.addElement("Sova");
-            al.addElement("Viper");
-            al.addElement("Yoru");
-            final JList<String>agentlist = new JList<>(al);
+//        /** Agent Selection List **/
+//        final DefaultListModel<String>al = new DefaultListModel<>();
+//            al.addElement("Astra");
+//            al.addElement("Breach");
+//            al.addElement("Brimstone");
+//            al.addElement("Cypher");
+//            al.addElement("Jett");
+//            al.addElement("Killjoy");
+//            al.addElement("Omen");
+//            al.addElement("Phoenix");
+//            al.addElement("Raze");
+//            al.addElement("Reyna");
+//            al.addElement("Sage");
+//            al.addElement("Skye");
+//            al.addElement("Sova");
+//            al.addElement("Viper");
+//            al.addElement("Yoru");
+
+            final JList<String>agentlist = new JList<>(agents);
 
         JScrollPane agentlistScroller = new JScrollPane(agentlist);
 

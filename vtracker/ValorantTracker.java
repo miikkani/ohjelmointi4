@@ -121,7 +121,7 @@ public class ValorantTracker extends JFrame {
 
          /** Buttons **/
          JButton addbutton = new JButton("Add Match");
-         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match");
+         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents);
          addbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
