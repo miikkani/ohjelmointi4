@@ -42,26 +42,17 @@ public class ValorantTracker extends JFrame {
              };
 
          // Initalize TestDatabase
-         VtrackerDatabase db = TestDatabase.getInstance();
+         VtrackerDatabase db = TextDatabase.getInstance("db.txt");
+
+         try {
+         db.addMatch(new Match("Astra", MatchResult.LOSS));
+         } catch (Exception e) {e.printStackTrace();}
 
          //Get matches from database
-         ArrayList<Match> matches = null;
+         ArrayList<Match> matches = new ArrayList<>();
          try {
              matches = db.getMatches();
          } catch (Exception e) {e.printStackTrace();}
-
-         //test print
-         assert matches != null;
-         for(Match m : matches) {
-             System.out.println(m);
-         }
-
-         //test finding match
-         System.out.println("\nFinding match#2...found " + ((TestDatabase) db).getMatch(2));
-
-
-
-
 
          // build interface
          this.setSize(460,460);
