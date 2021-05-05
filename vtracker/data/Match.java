@@ -15,8 +15,8 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match #" + this.hashCode()
-                + ": " + agent
-                + ", " + result;
+        return this.hashCode()
+                + ":" + agent
+                + ":" + result;
     }
 }
