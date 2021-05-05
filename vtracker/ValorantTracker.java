@@ -189,41 +189,23 @@ public class ValorantTracker extends JFrame {
         NumberFormat nf = NumberFormat.getPercentInstance();
         nf.setMaximumFractionDigits(2);
 
-
         int rows = matches.size();
         String[][] data = new String[matches.size()][2];
 
         for(int i=0;i < rows; i++){
              data[i][0] = matches.get(i).getAgent();
              double winp = Math.random();
-
              data[i][1] = nf.format(winp);
-
         }
-
-
-
-//        int astrawinp = 52; //Replace with a method that fetches agent win %'s
-//        String[][] data ={{"Astra",astrawinp + "%"},
-//                {"Breach",53 + "%"},
-//                {"Brimstone", 54 + "%"},
-//                {"Cypher", 51 + "%"},
-//                {"Jett", 45 + "%"},
-//                {"Killjoy", 49 + "%"},
-//                {"Omen", 53 + "%"},
-//                {"Phoenix", 55 + "%"},
-//                {"Raze", 46 + "%"},
-//                {"Reyna", 51 + "%"},
-//                {"Sage", 52 + "%"},
-//                {"Skye", 44 + "%"},
-//                {"Sova", 58 + "%"},
-//                {"Viper", 45 + "%"},
-//                {"Yoru", 41 + "%"}};
-
         return data;
     }
 
 
+    /**
+     * ValorantTracker. Starts application, builds UI and initializes database.
+     *
+     * @param args          array of command line arguments
+     */
     public static void main(String[] args) {
          SwingUtilities.invokeLater(ValorantTracker::new);
 
