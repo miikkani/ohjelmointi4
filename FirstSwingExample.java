@@ -29,7 +29,7 @@ public class FirstSwingExample {
         sp.setBounds(20,120,500,100);
 
 
-        JRadioButton outcomeVictory = new JRadioButton("Victory");
+        JRadioButton outcomeVictory = new JRadioButton("Victory", true);
         outcomeVictory.setBounds(20, 140, 100, 20);
         JRadioButton outcomeDefeat = new JRadioButton("Defeat");
         outcomeDefeat.setBounds(20,160,100,20);

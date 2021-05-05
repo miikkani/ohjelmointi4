@@ -53,6 +53,7 @@ public class DeleteLatestDialog extends JDialog{
         gbc.anchor = GridBagConstraints.EAST;
         add(cancelbutton, gbc);
         pack();
+        setResizable(false);
         setLocationRelativeTo(frame);
     }
 }
