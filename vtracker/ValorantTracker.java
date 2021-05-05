@@ -104,6 +104,7 @@ public class ValorantTracker extends JFrame {
 
          /** Buttons **/
          JButton addbutton = new JButton("Add Match");
+         addbutton.setPreferredSize(new Dimension(110,35));
          AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents);
          addbutton.addActionListener(new ActionListener() {
              @Override
@@ -113,6 +114,7 @@ public class ValorantTracker extends JFrame {
          });
 
          JButton delbutton = new JButton("Delete Latest");
+         delbutton.setPreferredSize(new Dimension(110,35));
          DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest");
          delbutton.addActionListener(new ActionListener() {
              @Override
@@ -122,6 +124,7 @@ public class ValorantTracker extends JFrame {
          });
 
          JButton delallbutton = new JButton("Delete All");
+         delallbutton.setPreferredSize(new Dimension(110,35));
          DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All");
          delallbutton.addActionListener(new ActionListener() {
              @Override

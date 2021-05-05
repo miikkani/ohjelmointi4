@@ -17,6 +17,7 @@ public class DeleteLatestDialog extends JDialog{
 
 
         JButton okbutton = new JButton("Ok");
+        okbutton.setPreferredSize(new Dimension(110,35));
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,6 +27,7 @@ public class DeleteLatestDialog extends JDialog{
         });
 
         JButton cancelbutton = new JButton("Cancel");
+        cancelbutton.setPreferredSize(new Dimension(110,35));
         cancelbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
