@@ -71,15 +71,26 @@ public class ValorantTracker extends JFrame {
          // Overall Win Percentage Panel
          int owinp = 52; //Replace with a method that fetches %
 
-         JPanel owinpanel = new JPanel();
-         owinpanel.setBackground(Color.GRAY);
+
 
          //Add label to the panel
-         JLabel owinlabel = new JLabel();
-         owinlabel.setText("Overall Win Percentage: " + owinp + "%");
-         owinlabel.setFont(owinlabel.getFont().deriveFont(30.0f));
-         owinpanel.add(owinlabel);
+         JLabel owinlabel1 = new JLabel();
+         owinlabel1.setText("Overall Win Percentage:");
+         owinlabel1.setHorizontalAlignment(JLabel.CENTER);
+         owinlabel1.setBorder(BorderFactory.createEmptyBorder(5,20,0,20));
+         owinlabel1.setFont(owinlabel1.getFont().deriveFont(30.0f));
+         JLabel owinlabel2 = new JLabel();
+         owinlabel2.setText(owinp + "%");
+         owinlabel2.setHorizontalAlignment(JLabel.CENTER);
+         owinlabel2.setBorder(BorderFactory.createEmptyBorder(0,20,5,20));
+         owinlabel2.setFont(owinlabel2.getFont().deriveFont(30.0f));
 
+         JPanel owinpanel = new JPanel();
+         owinpanel.setBackground(Color.LIGHT_GRAY);
+         owinpanel.setLayout(new GridLayout(2,1));
+         //owinpanel.setBorder(BorderFactory.createEmptyBorder(5,20,5,20));
+         owinpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+         owinpanel.add(owinlabel1); owinpanel.add(owinlabel2);
 
 
          // Build table for agent win percentages
