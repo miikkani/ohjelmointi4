@@ -21,6 +21,26 @@ public class ValorantTracker extends JFrame {
      ValorantTracker() {
          super("ValorantTracker");
 
+         // Create list of agents
+         String[] agents =
+             {
+                 "Astra",
+                 "Breach",
+                 "Brimstone",
+                 "Cypher",
+                 "Jett",
+                 "Killjoy",
+                 "Omen",
+                 "Phoenix",
+                 "Raze",
+                 "Reyna",
+                 "Sage",
+                 "Skye",
+                 "Sova",
+                 "Viper",
+                 "Yoru"
+             };
+
          // Initalize TestDatabase
          AbstractDatabase db = TestDatabase.getInstance();
 
@@ -201,11 +221,7 @@ public class ValorantTracker extends JFrame {
 
 
     public static void main(String[] args) {
-         SwingUtilities.invokeLater(new Runnable() {
-             public void run() {
-                 new ValorantTracker();
-             }
-         });
+         SwingUtilities.invokeLater(ValorantTracker::new);
 
     }
 }

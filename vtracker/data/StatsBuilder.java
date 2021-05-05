@@ -14,7 +14,6 @@ import java.util.Hashtable;
  */
 public class StatsBuilder {
     private double totalWP;
-    private Map<Agent,Double> agentsWinP;
     private double overallWinP;
 
     private AbstractDatabase db;
