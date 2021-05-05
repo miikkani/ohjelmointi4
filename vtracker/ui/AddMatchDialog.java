@@ -37,8 +37,14 @@ public class AddMatchDialog extends JDialog{
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(agentlist.isSelectionEmpty()){ //If no agent is selected warn user!
+                    String message = "<html><body><div width='200px' align='center'>SELECT AGENT before adding a match!</div></body></html>";
+                    JOptionPane.showMessageDialog(AddMatchDialog.super.rootPane, message,"", JOptionPane.PLAIN_MESSAGE);
+                }
+                else{ //Otherwise add match
                 setVisible(false);
                 /**ADD METHOD TO ADD MATCH HERE!**/
+                }
             }
         });
 
