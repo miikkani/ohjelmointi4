@@ -88,7 +88,6 @@ public class ValorantTracker extends JFrame {
          JPanel owinpanel = new JPanel();
          owinpanel.setBackground(Color.LIGHT_GRAY);
          owinpanel.setLayout(new GridLayout(2,1));
-         //owinpanel.setBorder(BorderFactory.createEmptyBorder(5,20,5,20));
          owinpanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
          owinpanel.add(owinlabel1); owinpanel.add(owinlabel2);
 

@@ -11,6 +11,7 @@ public class DeleteAllDialog extends JDialog{
 
         LayoutManager layout = new GridLayout(2,1);
         JPanel textpanel = new JPanel(layout);
+        textpanel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
         textpanel.add(new JLabel("This will DELETE ALL data from ALL AGENTS", JLabel.CENTER));
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
 

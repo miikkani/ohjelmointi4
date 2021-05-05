@@ -1,5 +1,9 @@
 package vtracker.ui;
 
+import vtracker.data.Match;
+import vtracker.data.MatchResult;
+import vtracker.data.VtrackerDatabase;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -42,9 +46,20 @@ public class AddMatchDialog extends JDialog{
                     String message = "<html><body><div width='200px' align='center'>SELECT AGENT before adding a match!</div></body></html>";
                     JOptionPane.showMessageDialog(AddMatchDialog.super.rootPane, message,"", JOptionPane.PLAIN_MESSAGE);
                 }
-                else{ //Otherwise add match
-                setVisible(false);
-                /**ADD METHOD TO ADD MATCH HERE!**/
+                else{ //Otherwise add match and hide dialog
+
+                    String agent = agentlist.getSelectedValue();
+                    MatchResult result = null;
+                    if(victoryrb.isSelected()){ result = MatchResult.WIN; }
+                    if(defeatrb.isSelected()){ result = MatchResult.LOSS; }
+                    if(drawrb.isSelected()){ result = MatchResult.DRAW; }
+
+                    Match match = new Match(agent, result);
+                    System.out.println(match); //For Testing Purposes Only!
+
+                    setVisible(false);
+                    /** ADD METHOD TO ADD MATCH HERE! */
+                    //VtrackerDatabase.addMatch(match);?
                 }
             }
         });

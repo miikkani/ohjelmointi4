@@ -11,6 +11,7 @@ public class DeleteLatestDialog extends JDialog{
 
         LayoutManager layout = new GridLayout(3,1);
         JPanel textpanel = new JPanel(layout);
+        textpanel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
         textpanel.add(new JLabel("This will DELETE your latest match:", JLabel.CENTER));
         textpanel.add(new JLabel("Killjoy - Victory", JLabel.CENTER));
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
