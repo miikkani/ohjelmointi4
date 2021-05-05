@@ -42,6 +42,16 @@ public class TestDatabase implements VtrackerDatabase {
     }
 
     @Override
+    public Match getLatestMatch() throws Exception {
+        if(tdb == null) throw new Exception();
+        return null;
+    }
+
+    @Override
+    public void addMatch(Match match) {
+
+    }
+
     public Match getMatch(int id) {
         return match.get(id-1);
     }

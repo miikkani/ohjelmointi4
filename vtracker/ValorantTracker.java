@@ -45,15 +45,19 @@ public class ValorantTracker extends JFrame {
          VtrackerDatabase db = TestDatabase.getInstance();
 
          //Get matches from database
-         ArrayList<Match> matches = db.getMatches();
+         ArrayList<Match> matches = null;
+         try {
+             matches = db.getMatches();
+         } catch (Exception e) {e.printStackTrace();}
 
          //test print
+         assert matches != null;
          for(Match m : matches) {
              System.out.println(m);
          }
 
          //test finding match
-         System.out.println("\nFinding match#2...found " + db.getMatch(2));
+         System.out.println("\nFinding match#2...found " + ((TestDatabase) db).getMatch(2));
 
 
 
