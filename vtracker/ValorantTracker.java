@@ -81,30 +81,9 @@ public class ValorantTracker extends JFrame {
          owinpanel.add(owinlabel);
 
 
-         /**
-          * Agent Win Percentage Table
-          *
-          *  int astrawinp = 52; //Replace with a method that fetches agent win %'s
-          *  String data[][]={{"Astra",astrawinp + "%"},
-          *          {"Breach",53 + "%"},
-          *          {"Brimstone", 54 + "%"},
-          *          {"Cypher", 51 + "%"},
-          *          {"Jett", 45 + "%"},
-          *          {"Killjoy", 49 + "%"},
-          *          {"Omen", 53 + "%"},
-          *          {"Phoenix", 55 + "%"},
-          *          {"Raze", 46 + "%"},
-          *          {"Reyna", 51 + "%"},
-          *          {"Sage", 52 + "%"},
-          *          {"Skye", 44 + "%"},
-          *          {"Sova", 58 + "%"},
-          *          {"Viper", 45 + "%"},
-          *          {"Yoru", 41 + "%"}};
-          *  String column[]={"Agent","Win Percentage"};
-          */
-          String[] column ={"Agent","Win Percentage"};
 
-         //Make the table uninteractive
+         // Build table for agent win percentages
+         String[] column ={"Agent","Win Percentage"};
          JTable agentwinptable = new JTable(getStats(matches),column){
              @Override
              public boolean isCellEditable(int row, int column) { //Override to make cells not editable
