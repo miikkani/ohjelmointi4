@@ -1,8 +1,5 @@
 package vtracker.data;
 
-import java.util.Map;
-import java.util.Hashtable;
-
 
 /**     !!Work In Progress!!
  *
@@ -16,7 +13,7 @@ public class StatsBuilder {
     private double totalWP;
     private double overallWinP;
 
-    private AbstractDatabase db;
+    private VtrackerDatabase db;
 
 
     /**

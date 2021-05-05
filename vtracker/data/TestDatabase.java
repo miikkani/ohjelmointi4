@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Simple implementation to get sampledata to UI
  * components.
  */
-public class TestDatabase implements AbstractDatabase {
+public class TestDatabase implements VtrackerDatabase {
     private final ArrayList<Match> match;
     private static TestDatabase tdb;
 

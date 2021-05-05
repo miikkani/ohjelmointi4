@@ -42,7 +42,7 @@ public class ValorantTracker extends JFrame {
              };
 
          // Initalize TestDatabase
-         AbstractDatabase db = TestDatabase.getInstance();
+         VtrackerDatabase db = TestDatabase.getInstance();
 
          //Get matches from database
          ArrayList<Match> matches = db.getMatches();
