@@ -44,10 +44,10 @@ public class ValorantTracker extends JFrame {
          // Initalize TestDatabase
          VtrackerDatabase db = TextDatabase.getInstance("db.txt");
 
-         try {
-         db.addMatch(new Match("Astra", MatchResult.LOSS));
-         } catch (Exception e) {e.printStackTrace();}
-
+//         try {
+//         db.addMatch(new Match("Astra", MatchResult.LOSS));
+//         } catch (Exception e) {e.printStackTrace();}
+//
          //Get matches from database
          ArrayList<Match> matches = new ArrayList<>();
          try {
@@ -106,7 +106,7 @@ public class ValorantTracker extends JFrame {
          /** Buttons **/
          JButton addbutton = new JButton("Add Match");
          addbutton.setPreferredSize(new Dimension(110,35));
-         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents);
+         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents, db);
          addbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {

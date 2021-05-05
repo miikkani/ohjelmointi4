@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 public class AddMatchDialog extends JDialog{
 
-    public AddMatchDialog(Frame frame, String title, String[] agents){
+    public AddMatchDialog(Frame frame, String title, String[] agents, VtrackerDatabase db){
         super(frame, title, true);
 
         /** Label texts **/
@@ -54,8 +54,11 @@ public class AddMatchDialog extends JDialog{
                     if(defeatrb.isSelected()){ result = MatchResult.LOSS; }
                     if(drawrb.isSelected()){ result = MatchResult.DRAW; }
 
-                    Match match = new Match(agent, result);
-                    System.out.println(match); //For Testing Purposes Only!
+                    try {
+                        db.addMatch(new Match(agent, result));
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
 
                     setVisible(false);
                     /** ADD METHOD TO ADD MATCH HERE! */
