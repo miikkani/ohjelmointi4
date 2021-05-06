@@ -1,5 +1,6 @@
 package vtracker.ui;
 
+import vtracker.ValorantTracker;
 import vtracker.data.Match;
 import vtracker.data.MatchResult;
 import vtracker.data.VtrackerDatabase;
@@ -7,6 +8,7 @@ import vtracker.data.VtrackerDatabase;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,10 +61,7 @@ public class AddMatchDialog extends JDialog{
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
                     setVisible(false);
-                    /** ADD METHOD TO ADD MATCH HERE! */
-                    //VtrackerDatabase.addMatch(match);?
                 }
             }
         });
