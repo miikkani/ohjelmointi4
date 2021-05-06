@@ -17,6 +17,15 @@ public class TextDatabase implements VtrackerDatabase {
 
     private TextDatabase(String path){
         this.file = new File(path);
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                System.out.print("Cannot create database! ");
+                ioe.getMessage();
+            }
+        }
     }
 
     /**
