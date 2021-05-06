@@ -2,6 +2,7 @@ package vtracker;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,12 +72,14 @@ public class ValorantTracker extends JFrame {
 
          // Build table for agent win percentages
          String[] column ={"Agent","Win Percentage"};
-         JTable agentwinptable = new JTable(getStats(matches),column){
+         DefaultTableModel model = new DefaultTableModel(getStats(matches), column);
+         JTable agentwinptable = new JTable(model){
              @Override
              public boolean isCellEditable(int row, int column) { //Override to make cells not editable
                  return false;
              }
          };
+
          agentwinptable.setFocusable(false);
          agentwinptable.setRowSelectionAllowed(false);
 
@@ -89,6 +92,7 @@ public class ValorantTracker extends JFrame {
          sp.setPreferredSize((new Dimension(300, 263)));
 
 
+
          /** Buttons **/
          JButton addbutton = new JButton("Add Match");
          addbutton.setPreferredSize(new Dimension(110,35));
@@ -97,6 +101,7 @@ public class ValorantTracker extends JFrame {
              @Override
              public void actionPerformed(ActionEvent e) {
                  addmatchdialog.setVisible(true);
+
              }
          });
 
