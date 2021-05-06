@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.text.NumberFormat;
 
@@ -99,6 +101,23 @@ public class ValorantTracker extends JFrame {
 
              }
          });
+
+         addmatchdialog.addPropertyChangeListener(new PropertyChangeListener() {
+             @Override
+             public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+                 try {
+                     agentwinptable.setModel(new DefaultTableModel(getStats(db.getMatches()), column));
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+
+                 //DEBUG!
+                 System.out.println(propertyChangeEvent.getPropertyName());
+
+
+                 }
+             }
+         );
 
          JButton delbutton = new JButton("Delete Latest");
          delbutton.setPreferredSize(new Dimension(110,35));

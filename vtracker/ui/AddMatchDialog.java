@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class AddMatchDialog extends JDialog{
 
@@ -62,6 +63,9 @@ public class AddMatchDialog extends JDialog{
                         ex.printStackTrace();
                     }
                     setVisible(false);
+                    firePropertyChange("OK cliked", true, false);
+//                    System.out.println(this);
+
                 }
             }
         });
@@ -104,6 +108,8 @@ public class AddMatchDialog extends JDialog{
         pack();
         setResizable(false);
         setLocationRelativeTo(frame);
+
+        System.out.println(Arrays.toString(getPropertyChangeListeners()));
     }
 }
 
