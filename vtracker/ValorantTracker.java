@@ -26,6 +26,7 @@ public class ValorantTracker extends JFrame {
          super("ValorantTracker");
 
          // initialize data and handling
+         // agents, db and stats
          initializeData();
 
          //Get matches from database
