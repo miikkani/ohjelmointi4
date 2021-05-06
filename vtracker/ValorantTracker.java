@@ -25,14 +25,8 @@ public class ValorantTracker extends JFrame {
      ValorantTracker() {
          super("ValorantTracker");
 
-         // get list of agents
-         agents = getAgents();
-
-         // initialize database
-         VtrackerDatabase db = TextDatabase.getInstance("db.txt");
-
-         // initialize StatsBuilder
-         StatsBuilder stats = new StatsBuilder(db);
+         // initialize data and handling
+         initializeData();
 
          //Get matches from database
          ArrayList<Match> matches = new ArrayList<>();
@@ -175,6 +169,15 @@ public class ValorantTracker extends JFrame {
         return data;
     }
 
+    /**
+     * initialize datastructures and database operations
+     */
+    private void initializeData() {
+        agents = getAgents();
+        db = TextDatabase.getInstance("db.txt");
+        stats = new StatsBuilder(db);
+
+    }
 
 
     /**
@@ -183,9 +186,7 @@ public class ValorantTracker extends JFrame {
      * @return agents      an array of agent names
      */
     private String[] getAgents() {
-        // Create list of agents
-        String[] agents =
-                {
+        return new String[]{
                         "Astra",
                         "Breach",
                         "Brimstone",
@@ -202,8 +203,6 @@ public class ValorantTracker extends JFrame {
                         "Viper",
                         "Yoru"
                 };
-
-        return agents;
     }
 
     /**
