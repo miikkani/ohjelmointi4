@@ -18,36 +18,22 @@ import vtracker.ui.*;
  *
  */
 public class ValorantTracker extends JFrame {
+    String[] agents;
+    VtrackerDatabase db;
+    StatsBuilder stats;
+
      ValorantTracker() {
          super("ValorantTracker");
 
-         // Create list of agents
-         String[] agents =
-             {
-                 "Astra",
-                 "Breach",
-                 "Brimstone",
-                 "Cypher",
-                 "Jett",
-                 "Killjoy",
-                 "Omen",
-                 "Phoenix",
-                 "Raze",
-                 "Reyna",
-                 "Sage",
-                 "Skye",
-                 "Sova",
-                 "Viper",
-                 "Yoru"
-             };
+         // get list of agents
+         agents = getAgents();
 
-         // Initalize TestDatabase
+         // initialize database
          VtrackerDatabase db = TextDatabase.getInstance("db.txt");
 
-//         try {
-//         db.addMatch(new Match("Astra", MatchResult.LOSS));
-//         } catch (Exception e) {e.printStackTrace();}
-//
+         // initialize StatsBuilder
+         StatsBuilder stats = new StatsBuilder(db);
+
          //Get matches from database
          ArrayList<Match> matches = new ArrayList<>();
          try {
@@ -168,6 +154,12 @@ public class ValorantTracker extends JFrame {
 
     }
 
+    /**
+     * THIS IS TEMPORARY METHOD AND WILL BE DELETED!
+     *
+     * @param matches list of matches
+     * @return two dimensional array of agents and their winp
+     */
     public String[][] getStats(ArrayList<Match> matches) {
         NumberFormat nf = NumberFormat.getPercentInstance();
         nf.setMaximumFractionDigits(2);
@@ -183,6 +175,36 @@ public class ValorantTracker extends JFrame {
         return data;
     }
 
+
+
+    /**
+     * Returns a reference list of all agents in Valorant.
+     *
+     * @return agents      an array of agent names
+     */
+    private String[] getAgents() {
+        // Create list of agents
+        String[] agents =
+                {
+                        "Astra",
+                        "Breach",
+                        "Brimstone",
+                        "Cypher",
+                        "Jett",
+                        "Killjoy",
+                        "Omen",
+                        "Phoenix",
+                        "Raze",
+                        "Reyna",
+                        "Sage",
+                        "Skye",
+                        "Sova",
+                        "Viper",
+                        "Yoru"
+                };
+
+        return agents;
+    }
 
     /**
      * ValorantTracker. Starts application, builds UI and initializes database.

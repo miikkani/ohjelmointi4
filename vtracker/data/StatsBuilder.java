@@ -1,6 +1,8 @@
 package vtracker.data;
 
 
+import java.util.ArrayList;
+
 /**     !!Work In Progress!!
  *
  * This class calculates statistics from given match database.
@@ -14,12 +16,14 @@ public class StatsBuilder {
     private double overallWinP;
 
     private VtrackerDatabase db;
+    private ArrayList<Match> matches;
 
 
     /**
      * Maybe obsolete.
      */
-    public StatsBuilder() {
+    public StatsBuilder(VtrackerDatabase db) {
+        this.db = db;
 
     }
 
@@ -55,7 +59,17 @@ public class StatsBuilder {
     }
 
 
-
+    /**
+     * Gets latest data from database.
+     */
+    private void refresh() {
+       try {
+           matches = db.getMatches();
+       } catch (Exception e) {
+           e.printStackTrace();
+           System.out.println("Error with database!");
+       }
+    }
 
 
 

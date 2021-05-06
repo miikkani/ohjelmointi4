@@ -42,7 +42,7 @@ public class TextDatabase implements VtrackerDatabase {
     }
 
     @Override
-    public ArrayList<Match> getMatches() throws Exception {
+    public ArrayList<Match> getMatches() throws IOException {
         String match;
         String[] tokens;
 
@@ -54,7 +54,8 @@ public class TextDatabase implements VtrackerDatabase {
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
-            System.out.println("IO error! Could not read matches!");
+            System.out.println("IO error! Could not read database!");
+            throw ioe;
         }
 
         return m;
@@ -66,7 +67,7 @@ public class TextDatabase implements VtrackerDatabase {
     }
 
     @Override
-    public void addMatch(Match match) throws Exception {
+    public void addMatch(Match match) throws IOException {
         try(FileWriter out = new FileWriter(this.file, true)){
             out.write(match.toString() + "\n");
             System.out.println("Added match: " + match);
@@ -74,6 +75,7 @@ public class TextDatabase implements VtrackerDatabase {
         } catch (IOException ioe) {
             ioe.printStackTrace();
             System.out.println("Could not add match. IO error.");
+            throw ioe;
         }
 
 
