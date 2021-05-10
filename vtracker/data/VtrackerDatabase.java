@@ -2,10 +2,13 @@ package vtracker.data;
 
 import java.util.ArrayList;
 
+/**
+ * This is a general API for database operations in ValorantTracker.
+ */
 public interface VtrackerDatabase {
 
     /**
-     * Returns a collection of Match objects from the database.
+     * Returns a list of Match objects from the database.
      *
      * @return              list of Match objects
      * @throws Exception    if operation failed.
@@ -18,7 +21,7 @@ public interface VtrackerDatabase {
      * @return              a match object representing one match
      * @throws Exception    if operation failed.
      */
-    Match getLatestMatch() throws Exception;
+    Match getLatestMatch() throws Exception ;
 
     /**
      * Adds new match to the database.
