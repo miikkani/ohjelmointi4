@@ -134,7 +134,7 @@ public class ValorantTracker extends JFrame {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
                  try {
-                     agentwinptable.setModel(new DefaultTableModel(getStats(db.getMatches()), column));
+                     agentwinptable.setModel(new DefaultTableModel(formatStats(stats.getStats()), column));
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
