@@ -88,4 +88,20 @@ public class TextDatabase implements VtrackerDatabase {
 
 
     }
+
+    @Override
+    public boolean deleteDatabase() {
+        try(FileWriter out = new FileWriter(this.file, false)){
+            out.write("");
+            System.out.println("Deleted database in " + this.file);
+            return true;
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.out.println("Could not delete database.");
+            return false;
+        }
+    }
+
+
 }

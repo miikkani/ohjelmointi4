@@ -33,13 +33,13 @@ public interface VtrackerDatabase {
     boolean addMatch(Match match);
 
     /**
-     * Adds new match to the database. Returns true if operation was
+     * Deletes database. Returns true if operation was
      * successful and false if there was a problem.
      *
-     * @param match         a match to be added
+     *
      * @return              a boolean of whether operation completed
      */
-    boolean deleteDatabase() throws Exception;
+    boolean deleteDatabase() ;
 
 
 
