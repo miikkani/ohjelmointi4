@@ -47,7 +47,9 @@ public class TestDatabase implements VtrackerDatabase {
     }
 
     @Override
-    public void addMatch(Match match) {
+    public boolean addMatch(Match match) {
+        System.out.println("Printing from addMatch()");
+        return true;
 
     }
 

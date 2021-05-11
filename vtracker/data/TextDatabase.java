@@ -74,15 +74,16 @@ public class TextDatabase implements VtrackerDatabase {
     }
 
     @Override
-    public void addMatch(Match match) throws IOException {
+    public boolean addMatch(Match match) {
         try(FileWriter out = new FileWriter(this.file, true)){
             out.write(match.toString() + "\n");
             System.out.println("Added match: " + match);
+            return true;
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
             System.out.println("Could not add match. IO error.");
-            throw ioe;
+            return false;
         }
 
 

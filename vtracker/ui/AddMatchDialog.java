@@ -57,16 +57,10 @@ public class AddMatchDialog extends JDialog{
                     if(defeatrb.isSelected()){ result = MatchResult.LOSS; }
                     if(drawrb.isSelected()){ result = MatchResult.DRAW; }
 
-                    try {
-                        db.addMatch(new Match(agent, result));
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
+                    db.addMatch(new Match(agent, result));
                     setVisible(false);
-                    firePropertyChange("OK cliked", true, false);
-//                    System.out.println(this);
-
-                }
+                    firePropertyChange("Database updated", false, true);
+                    }
             }
         });
 
