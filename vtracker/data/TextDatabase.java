@@ -85,11 +85,23 @@ public class TextDatabase implements VtrackerDatabase {
             System.out.println("Could not add match. IO error.");
             return false;
         }
-    }
 
+
+    }
 
     @Override
-    public boolean deleteDatabase() throws Exception {
-        return false;
+    public boolean deleteDatabase() {
+        try(FileWriter out = new FileWriter(this.file, false)){
+            out.write("");
+            System.out.println("Deleted database in " + this.file);
+            return true;
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.out.println("Could not delete database.");
+            return false;
+        }
     }
+
+
 }

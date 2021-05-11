@@ -1,12 +1,16 @@
 package vtracker.ui;
 
+import vtracker.data.TextDatabase;
+import vtracker.data.VtrackerDatabase;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class DeleteAllDialog extends JDialog{
-    public DeleteAllDialog(Frame frame, String title){
+    public DeleteAllDialog(Frame frame, String title, VtrackerDatabase db){
         super(frame, title, true);
 
         LayoutManager layout = new GridLayout(2,1);
@@ -21,8 +25,12 @@ public class DeleteAllDialog extends JDialog{
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                db.deleteDatabase(); /**Deletes all database entries*/
+
                 setVisible(false);
-                /**ADD METHOD TO DELETE ALL MATCHES HERE!**/
+                firePropertyChange("OK clicked", true, false);
+
             }
         });
 

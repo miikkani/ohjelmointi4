@@ -53,9 +53,9 @@ public class TestDatabase implements VtrackerDatabase {
 
     }
 
-    @Override
-    public boolean deleteDatabase() throws Exception {
-        return false;
+    public boolean deleteDatabase(){
+        System.out.println("Printing from deleteDatabse()");
+        return true;
     }
 
     public Match getMatch(int id) {
