@@ -41,6 +41,15 @@ public interface VtrackerDatabase {
      */
     boolean deleteDatabase() ;
 
+    /**
+     * Deletes latest added match. Returns true if operation was
+     * successful and false if there was a problem.
+     *
+     *
+     * @return              a boolean of whether operation completed
+     */
+    boolean deleteLatestMatch() ;
+
 
 
 }

@@ -1,14 +1,8 @@
 package vtracker.data;
 
-import java.io.File;
-
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.FileReader;
+import java.io.*;
 
 import java.util.ArrayList;
-
-import java.io.IOException;
 
 
 public class TextDatabase implements VtrackerDatabase {
@@ -65,6 +59,7 @@ public class TextDatabase implements VtrackerDatabase {
     public Match getLatestMatch() throws IOException {
         try {
             ArrayList<Match> matches = getMatches();
+            System.out.println("Running getLatestMatch()");
             return matches.get(matches.size()-1);
         } catch(IOException ioe) {
             throw ioe;
@@ -99,6 +94,29 @@ public class TextDatabase implements VtrackerDatabase {
         } catch (IOException ioe) {
             ioe.printStackTrace();
             System.out.println("Could not delete database.");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteLatestMatch() {
+        try {
+            RandomAccessFile f = new RandomAccessFile(this.file, "rw");
+            long length = f.length() - 1;
+            byte b;
+            do {
+                length -= 1;
+                f.seek(length);
+                b = f.readByte();
+            } while (b != 10);
+            f.setLength(length + 1);
+            f.close();
+            System.out.println("Deleted last match in " + this.file);
+            return true;
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.out.println("Could not delete latest match.");
             return false;
         }
     }

@@ -58,6 +58,11 @@ public class TestDatabase implements VtrackerDatabase {
         return true;
     }
 
+    public boolean deleteLatestMatch(){
+        System.out.println("Printing from deleteLatestMatch()");
+        return true;
+    }
+
     public Match getMatch(int id) {
         return match.get(id-1);
     }

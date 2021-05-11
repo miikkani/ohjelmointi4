@@ -1,12 +1,15 @@
 package vtracker.ui;
 
+import vtracker.data.VtrackerDatabase;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class DeleteLatestDialog extends JDialog{
-    public DeleteLatestDialog(Frame frame, String title){
+    public DeleteLatestDialog(Frame frame, String title, VtrackerDatabase db){
         super(frame, title, true);
 
         LayoutManager layout = new GridLayout(3,1);
@@ -16,14 +19,14 @@ public class DeleteLatestDialog extends JDialog{
         textpanel.add(new JLabel("Killjoy - Victory", JLabel.CENTER));
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
 
-
         JButton okbutton = new JButton("Ok");
         okbutton.setPreferredSize(new Dimension(110,35));
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                db.deleteLatestMatch();
                 setVisible(false);
-                /**ADD METHOD TO DELETE LATEST MATCH HERE!**/
+                firePropertyChange("OK clicked", true, false);
             }
         });
 

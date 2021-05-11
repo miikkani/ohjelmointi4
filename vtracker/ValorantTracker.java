@@ -121,13 +121,29 @@ public class ValorantTracker extends JFrame {
 
          JButton delbutton = new JButton("Delete Latest");
          delbutton.setPreferredSize(new Dimension(110,35));
-         DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest");
+         DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest", db);
          delbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
                  deletelatestdialog.setVisible(true);
              }
          });
+
+         deletelatestdialog.addPropertyChangeListener(new PropertyChangeListener() {
+             @Override
+             public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+                 try {
+                     agentwinptable.setModel(new DefaultTableModel(getStats(db.getMatches()), column));
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+
+                 //DEBUG!
+                 System.out.println(propertyChangeEvent.getPropertyName());
+
+             }
+         });
+
 
          JButton delallbutton = new JButton("Delete All");
          delallbutton.setPreferredSize(new Dimension(110,35));
@@ -152,8 +168,7 @@ public class ValorantTracker extends JFrame {
                  System.out.println(propertyChangeEvent.getPropertyName());
 
              }
-         }
-         );
+         });
 
 
          /** GridBagLayout **/
