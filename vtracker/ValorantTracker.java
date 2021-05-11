@@ -45,10 +45,6 @@ public class ValorantTracker extends JFrame {
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-         // Overall Win Percentage Panel
-         int owinp = 52; //Replace with a method that fetches %
-
-
 
          //Add label to the panel
          JLabel owinlabel1 = new JLabel();
@@ -57,7 +53,7 @@ public class ValorantTracker extends JFrame {
          owinlabel1.setBorder(BorderFactory.createEmptyBorder(5,20,0,20));
          owinlabel1.setFont(owinlabel1.getFont().deriveFont(30.0f));
          JLabel owinlabel2 = new JLabel();
-         owinlabel2.setText(owinp + "%");
+         owinlabel2.setText(formatOverallWinp());
          owinlabel2.setHorizontalAlignment(JLabel.CENTER);
          owinlabel2.setBorder(BorderFactory.createEmptyBorder(0,20,5,20));
          owinlabel2.setFont(owinlabel2.getFont().deriveFont(30.0f));
@@ -79,7 +75,9 @@ public class ValorantTracker extends JFrame {
              }
          };
 
+//         agentwinptable.getTableHeader().setReorderingAllowed(false);
          agentwinptable.setFocusable(false);
+//         agentwinptable.setShowHorizontalLines(false);
          agentwinptable.setRowSelectionAllowed(false);
 
          //Headers start from left
@@ -110,6 +108,7 @@ public class ValorantTracker extends JFrame {
                  try {
                      stats.refresh();
                      stats.calculateStats();
+                     owinlabel2.setText(formatOverallWinp());
                      agentwinptable.setModel(new DefaultTableModel(formatStats(stats.getStats()), column));
                  } catch (Exception e) {
                      e.printStackTrace();
@@ -136,6 +135,9 @@ public class ValorantTracker extends JFrame {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
                  try {
+                     stats.refresh();
+                     stats.calculateStats();
+                     owinlabel2.setText(formatOverallWinp());
                      agentwinptable.setModel(new DefaultTableModel(formatStats(stats.getStats()), column));
                  } catch (Exception e) {
                      e.printStackTrace();
@@ -162,6 +164,9 @@ public class ValorantTracker extends JFrame {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
                  try {
+                     stats.refresh();
+                     stats.calculateStats();
+                     owinlabel2.setText(formatOverallWinp());
                      agentwinptable.setModel(new DefaultTableModel(
                              formatStats(stats.getStats()), column));
                  } catch (Exception e) {
@@ -209,14 +214,14 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * THIS IS TEMPORARY METHOD AND WILL BE DELETED!
+     * Format stats for UI
      *
      * @param stats list of matches
      * @return two dimensional array of agents and their winp
      */
     public String[][] formatStats(Hashtable<String, Double> stats) {
         NumberFormat nf = NumberFormat.getPercentInstance();
-        nf.setMaximumFractionDigits(2);
+        nf.setMaximumFractionDigits(0);
 
         int rows = stats.size();
         String[][] data = new String[rows][2];
@@ -226,6 +231,19 @@ public class ValorantTracker extends JFrame {
              data[i][1] = nf.format(stats.get(agents[i]));
         }
         return data;
+    }
+
+    /**
+     * Format overall winpercentage for UI
+     *
+     * @return      formatted winpercentage
+     */
+    private String formatOverallWinp() {
+        String formatted;
+        NumberFormat nf = NumberFormat.getPercentInstance();
+        nf.setMaximumFractionDigits(0);
+
+        return nf.format(stats.getOverallWinPercentage());
     }
 
     /**

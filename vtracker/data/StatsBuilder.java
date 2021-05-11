@@ -56,18 +56,25 @@ public class StatsBuilder {
      *
      */
     public void calculateStats() {
-        int total = matches.size();
 
-        for(String agent : agents) {
+        for(int i = 0; i< agents.length; ++i) {
+            int total = 0;
             double winp = 0.0;
             int wins = 0;
             for(Match m : matches) {
-                if(m.getResult() == MatchResult.WIN) {
-                    wins++;
+                if(m.getAgent().equals(agents[i])) {
+                    total++;
+                    if (m.getResult() == MatchResult.WIN &&
+                            m.getAgent().equals(agents[i])) {
+                        wins++;
+                    }
                 }
             }
-            winp = ((double)wins)/ ((double)total);
-            winpercentages.put(agent, winp);
+            if(total != 0)winp = ((double)wins)/ ((double)total);
+            System.out.print(winp + " ");
+            System.out.println(agents[i]);
+
+            winpercentages.put(agents[i], winp);
         }
     }
 
@@ -85,7 +92,18 @@ public class StatsBuilder {
      * Maybe...
      */
     public double getOverallWinPercentage() {
-        return overallWinP;
+            int total = matches.size();
+            double winp = 0.0;
+            int wins = 0;
+            for(Match m : matches) {
+                    if (m.getResult() == MatchResult.WIN) {
+                        wins++;
+                    }
+                }
+            if(total != 0)winp = ((double)wins)/ ((double)total);
+            System.out.print(winp + " ");
+
+            return winp;
     }
 
 
