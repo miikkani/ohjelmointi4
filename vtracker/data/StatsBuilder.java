@@ -2,6 +2,7 @@ package vtracker.data;
 
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**     !!Work In Progress!!
  *
@@ -12,18 +13,22 @@ import java.util.ArrayList;
  *
  */
 public class StatsBuilder {
-    private double totalWP;
     private double overallWinP;
 
+    private String[] agents;
     private VtrackerDatabase db;
     private ArrayList<Match> matches;
 
+    private Hashtable<String, Double> winpercentages;
+
+
 
     /**
-     * Maybe obsolete.
+     * Main constructor.
      */
-    public StatsBuilder(VtrackerDatabase db) {
+    public StatsBuilder(VtrackerDatabase db, String[] agents) {
         this.db = db;
+        this.agents = agents;
 
     }
 
@@ -46,6 +51,8 @@ public class StatsBuilder {
      *
      */
     public void updateStats() {
+        for(Match m : matches);
+
 
 
     }
@@ -54,8 +61,8 @@ public class StatsBuilder {
     /**
      * Maybe...
      */
-    public double getTotalWinPercentage() {
-        return totalWP;
+    public double getOverallWinPercentage() {
+        return overallWinP;
     }
 
 

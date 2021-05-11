@@ -53,6 +53,11 @@ public class TestDatabase implements VtrackerDatabase {
 
     }
 
+    @Override
+    public boolean deleteDatabase() throws Exception {
+        return false;
+    }
+
     public Match getMatch(int id) {
         return match.get(id-1);
     }

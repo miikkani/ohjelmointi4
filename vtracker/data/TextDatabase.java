@@ -85,7 +85,11 @@ public class TextDatabase implements VtrackerDatabase {
             System.out.println("Could not add match. IO error.");
             return false;
         }
+    }
 
 
+    @Override
+    public boolean deleteDatabase() throws Exception {
+        return false;
     }
 }

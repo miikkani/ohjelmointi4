@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+//import java.util.Hashtable;
 import java.text.NumberFormat;
 
 import vtracker.data.*;
@@ -200,7 +201,7 @@ public class ValorantTracker extends JFrame {
     private void initializeData() {
         agents = getAgents();
         db = TextDatabase.getInstance("db.txt");
-        stats = new StatsBuilder(db);
+        stats = new StatsBuilder(db, agents);
 
     }
 
@@ -211,6 +212,7 @@ public class ValorantTracker extends JFrame {
      * @return agents      an array of agent names
      */
     private String[] getAgents() {
+
         return new String[]{
                         "Astra",
                         "Breach",
@@ -227,7 +229,7 @@ public class ValorantTracker extends JFrame {
                         "Sova",
                         "Viper",
                         "Yoru"
-                };
+        };
     }
 
     /**
