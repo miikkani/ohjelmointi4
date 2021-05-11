@@ -54,7 +54,7 @@ public class TestDatabase implements VtrackerDatabase {
     }
 
     public boolean deleteDatabase(){
-        System.out.println("Printing from deleteDatabse()");
+        System.out.println("Printing from deleteDatabase()");
         return true;
     }
 
