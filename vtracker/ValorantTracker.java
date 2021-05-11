@@ -12,6 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 //import java.util.Hashtable;
 import java.text.NumberFormat;
+import java.util.Hashtable;
 
 import vtracker.data.*;
 import vtracker.ui.*;
@@ -70,7 +71,7 @@ public class ValorantTracker extends JFrame {
 
          // Build table for agent win percentages
          String[] column ={"Agent","Win Percentage"};
-         DefaultTableModel model = new DefaultTableModel(getStats(matches), column);
+         DefaultTableModel model = new DefaultTableModel(formatStats(stats.getStats()), column);
          JTable agentwinptable = new JTable(model){
              @Override
              public boolean isCellEditable(int row, int column) { //Override to make cells not editable
@@ -107,7 +108,7 @@ public class ValorantTracker extends JFrame {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
                  try {
-                     agentwinptable.setModel(new DefaultTableModel(getStats(db.getMatches()), column));
+                     agentwinptable.setModel(new DefaultTableModel(formatStats(stats.getStats()), column));
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
@@ -143,7 +144,8 @@ public class ValorantTracker extends JFrame {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
                  try {
-                     agentwinptable.setModel(new DefaultTableModel(getStats(db.getMatches()), column));
+                     agentwinptable.setModel(new DefaultTableModel(
+                             formatStats(stats.getStats()), column));
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
@@ -192,20 +194,19 @@ public class ValorantTracker extends JFrame {
     /**
      * THIS IS TEMPORARY METHOD AND WILL BE DELETED!
      *
-     * @param matches list of matches
+     * @param stats list of matches
      * @return two dimensional array of agents and their winp
      */
-    public String[][] getStats(ArrayList<Match> matches) {
+    public String[][] formatStats(Hashtable<String, Double> stats) {
         NumberFormat nf = NumberFormat.getPercentInstance();
         nf.setMaximumFractionDigits(2);
 
-        int rows = matches.size();
-        String[][] data = new String[matches.size()][2];
+        int rows = stats.size();
+        String[][] data = new String[rows][2];
 
         for(int i=0;i < rows; i++){
-             data[i][0] = matches.get(i).getAgent();
-             double winp = Math.random();
-             data[i][1] = nf.format(winp);
+             data[i][0] = agents[i];
+             data[i][1] = nf.format(stats.get(agents[i]));
         }
         return data;
     }
@@ -217,6 +218,8 @@ public class ValorantTracker extends JFrame {
         agents = getAgents();
         db = TextDatabase.getInstance("db.txt");
         stats = new StatsBuilder(db, agents);
+        stats.refresh();
+        stats.calculateStats();
 
     }
 
