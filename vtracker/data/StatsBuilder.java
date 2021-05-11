@@ -29,6 +29,10 @@ public class StatsBuilder {
     public StatsBuilder(VtrackerDatabase db, String[] agents) {
         this.db = db;
         this.agents = agents;
+        winpercentages = new Hashtable<>(agents.length);
+        for(String agent : agents) {
+            winpercentages.put(agent, 0.0);
+        }
 
     }
 
@@ -39,7 +43,8 @@ public class StatsBuilder {
     /**
      * Maybe...
      */
-    public double calculateWinPercent() {
+    private double calculateWinPercent() {
+
 
         return 0.0;
     }
@@ -50,11 +55,29 @@ public class StatsBuilder {
      * structures. Make this run in own thread.
      *
      */
-    public void updateStats() {
-        for(Match m : matches);
+    public void calculateStats() {
+        int total = matches.size();
 
+        for(String agent : agents) {
+            double winp = 0.0;
+            int wins = 0;
+            for(Match m : matches) {
+                if(m.getResult() == MatchResult.WIN) {
+                    wins++;
+                }
+            }
+            winp = ((double)wins)/ ((double)total);
+            winpercentages.put(agent, winp);
+        }
+    }
 
-
+    /**
+     * Returns a collection of agents and their current winpercentages.
+     *
+     * @return          a Hashtable containing agents and winpercentages.
+     */
+    public Hashtable<String, Double> getStats() {
+        return winpercentages;
     }
 
 
@@ -69,7 +92,7 @@ public class StatsBuilder {
     /**
      * Gets latest data from database.
      */
-    private void refresh() {
+    public void refresh() {
        try {
            matches = db.getMatches();
        } catch (Exception e) {
