@@ -24,12 +24,23 @@ public interface VtrackerDatabase {
     Match getLatestMatch() throws Exception ;
 
     /**
-     * Adds new match to the database.
+     * Adds new match to the database. Returns true if operation was
+     * successful and false if there was a problem.
      *
      * @param match         a match to be added
-     * @throws Exception    if operation failed.
+     * @return              a boolean of whether operation completed
      */
-    void addMatch(Match match) throws Exception;
+    boolean addMatch(Match match);
+
+    /**
+     * Adds new match to the database. Returns true if operation was
+     * successful and false if there was a problem.
+     *
+     * @param match         a match to be added
+     * @return              a boolean of whether operation completed
+     */
+    boolean deleteDatabase() throws Exception;
+
 
 
 }
