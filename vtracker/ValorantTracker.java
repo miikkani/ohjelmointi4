@@ -41,7 +41,7 @@ public class ValorantTracker extends JFrame {
 
 
 
-         /** Overall win percentage panel */
+         /** Overall win percentage panel **/
          JLabel owinlabel1 = new JLabel();
          owinlabel1.setText("Overall Win Percentage:");
          owinlabel1.setHorizontalAlignment(JLabel.CENTER);
@@ -61,7 +61,7 @@ public class ValorantTracker extends JFrame {
          owinpanel.add(owinlabel1); owinpanel.add(owinlabel2);
 
 
-         /** Agent win percentage table */
+         /** Agent win percentage table **/
          String[] column ={"Agent:","Win Percentage:"};
          DefaultTableModel model = new DefaultTableModel(formatStats(stats.getStats()), column);
 
@@ -100,11 +100,12 @@ public class ValorantTracker extends JFrame {
          sp.setPreferredSize((new Dimension(300, 263)));
 
 
-
-         /** Buttons **/
+         /** Add Match Button */
          JButton addbutton = new JButton("Add Match");
          addbutton.setPreferredSize(new Dimension(110,35));
          AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents, db);
+
+         //Listener to open AddMatchDialog on button click
          addbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -113,7 +114,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         // Update UI when there is changes in database
+         //Listener to update win% elements when exiting dialog
          addmatchdialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -132,9 +133,12 @@ public class ValorantTracker extends JFrame {
          }
          );
 
+         /** Delete Latest Button */
          JButton delbutton = new JButton("Delete Latest");
          delbutton.setPreferredSize(new Dimension(110,35));
          DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest", db);
+
+         //Listener to open DeleteLatestDialog on button click
          delbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -142,6 +146,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
+         //Listener to update win% elements when exiting dialog
          deletelatestdialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -160,10 +165,12 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-
+         /** Delete All Button */
          JButton delallbutton = new JButton("Delete All");
          delallbutton.setPreferredSize(new Dimension(110,35));
          DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All", db);
+
+         //Listener to open DeleteAllDialog on button click
          delallbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -171,6 +178,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
+         //Listener to update win% elements when exiting dialog
          deletealldialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -191,7 +199,7 @@ public class ValorantTracker extends JFrame {
          });
 
 
-         /** GridBagLayout **/
+         /** GridBagLayout to position main screen elements */
          GridBagLayout layout = new GridBagLayout();
          GridBagConstraints gbc = new GridBagConstraints();
          this.setLayout(layout);
