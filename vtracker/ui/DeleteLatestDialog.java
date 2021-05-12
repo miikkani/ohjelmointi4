@@ -84,7 +84,11 @@ public class DeleteLatestDialog extends JDialog{
     public void updateLatestMatch(VtrackerDatabase db){
         try {
             Match m = db.getLatestMatch();
-            matchlabel.setText(m.getAgent() + " - " + m.getResult());
+            if (m == null){
+                matchlabel.setText("Database empty!");
+            } else {
+                matchlabel.setText(m.getAgent() + " - " + m.getResult());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
