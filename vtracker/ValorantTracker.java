@@ -215,8 +215,8 @@ public class ValorantTracker extends JFrame {
 
          /** JFrame settings */
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         this.setLocationRelativeTo(null);
          this.pack();
+         this.setLocationRelativeTo(null);
          this.setResizable(false);
          this.setVisible(true);
     }

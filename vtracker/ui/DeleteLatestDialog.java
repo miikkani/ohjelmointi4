@@ -80,6 +80,7 @@ public class DeleteLatestDialog extends JDialog{
         pack();
         setResizable(false);
         setLocationRelativeTo(frame);
+
     }
     public void updateLatestMatch(VtrackerDatabase db){
         try {
