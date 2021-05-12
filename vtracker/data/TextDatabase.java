@@ -122,7 +122,6 @@ public class TextDatabase implements VtrackerDatabase {
             } else {
                 f.setLength(length + 1);
             }
-            f.close();
             System.out.println("Deleted last match in " + this.file);
 
             return true;
