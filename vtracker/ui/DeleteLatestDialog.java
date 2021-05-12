@@ -18,12 +18,19 @@ public class DeleteLatestDialog extends JDialog{
     public DeleteLatestDialog(Frame frame, String title, VtrackerDatabase db){
         super(frame, title, true);
 
+
         /** Text to warn the user of what is being deleted */
         LayoutManager layout = new GridLayout(3,1);
         JPanel textpanel = new JPanel(layout);
         textpanel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
         textpanel.add(new JLabel("This will DELETE your latest match:", JLabel.CENTER));
-        textpanel.add(new JLabel("Killjoy - Victory", JLabel.CENTER));
+        JLabel matchlabel = new JLabel();
+        try {
+            matchlabel.setText(db.getLatestMatch().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        textpanel.add(matchlabel);
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
 
         /** Ok Button */
@@ -34,6 +41,11 @@ public class DeleteLatestDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 db.deleteLatestMatch(); //Deletes latest match in database
                 setVisible(false);
+                try {
+                    matchlabel.setText(db.getLatestMatch().toString());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 firePropertyChange("OK clicked", true, false);
             }
         });
