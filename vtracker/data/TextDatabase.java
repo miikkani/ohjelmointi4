@@ -13,7 +13,13 @@ public class TextDatabase implements VtrackerDatabase {
         this.file = new File(path);
         if(!file.exists()){
             try {
-                file.createNewFile();
+                if(file.createNewFile()) {
+                System.out.println("Created new database file...");
+                } else {
+                    System.out.println(
+                            "Cannot create database file,"
+                            + "file already exists!");
+                }
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.out.print("Cannot create database! ");
