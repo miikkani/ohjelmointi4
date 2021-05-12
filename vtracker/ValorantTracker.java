@@ -119,6 +119,7 @@ public class ValorantTracker extends JFrame {
                      stats.calculateStats();
                      owinlabel2.setText(formatOverallWinp());
                      agentwinptable.setModel(new DefaultTableModel(formatStats(stats.getStats()), column));
+                     deletelatestdialog.updateLatestMatch(db);
                  } catch (Exception e) {
                      e.printStackTrace();
                  }

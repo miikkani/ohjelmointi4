@@ -1,5 +1,6 @@
 package vtracker.ui;
 
+import vtracker.ValorantTracker;
 import vtracker.data.VtrackerDatabase;
 
 import javax.swing.*;
@@ -15,6 +16,8 @@ import java.io.IOException;
  */
 
 public class DeleteLatestDialog extends JDialog{
+    JLabel matchlabel;
+
     public DeleteLatestDialog(Frame frame, String title, VtrackerDatabase db){
         super(frame, title, true);
 
@@ -24,12 +27,8 @@ public class DeleteLatestDialog extends JDialog{
         JPanel textpanel = new JPanel(layout);
         textpanel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
         textpanel.add(new JLabel("This will DELETE your latest match:", JLabel.CENTER));
-        JLabel matchlabel = new JLabel();
-        try {
-            matchlabel.setText(db.getLatestMatch().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        matchlabel = new JLabel("", JLabel.CENTER);
+        updateLatestMatch(db); //Sets latest added match to matchlabel
         textpanel.add(matchlabel);
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
 
@@ -41,11 +40,7 @@ public class DeleteLatestDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 db.deleteLatestMatch(); //Deletes latest match in database
                 setVisible(false);
-                try {
-                    matchlabel.setText(db.getLatestMatch().toString());
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                updateLatestMatch(db); //Sets latest added match to matchlabel
                 firePropertyChange("OK clicked", true, false);
             }
         });
@@ -84,4 +79,12 @@ public class DeleteLatestDialog extends JDialog{
         setResizable(false);
         setLocationRelativeTo(frame);
     }
+    public void updateLatestMatch(VtrackerDatabase db){
+        try {
+            matchlabel.setText(db.getLatestMatch().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
