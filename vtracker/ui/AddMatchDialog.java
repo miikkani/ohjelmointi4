@@ -112,7 +112,6 @@ public class AddMatchDialog extends JDialog{
         setResizable(false);
         setLocationRelativeTo(frame);
 
-        System.out.println(Arrays.toString(getPropertyChangeListeners()));
     }
 }
 
