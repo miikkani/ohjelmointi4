@@ -124,9 +124,6 @@ public class ValorantTracker extends JFrame {
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
-
-                 //DEBUG!
-                 System.out.println(propertyChangeEvent.getPropertyName());
              }
          }
          );
@@ -156,10 +153,6 @@ public class ValorantTracker extends JFrame {
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
-
-                 //DEBUG!
-                 System.out.println(propertyChangeEvent.getPropertyName());
-
              }
          });
 
@@ -189,10 +182,6 @@ public class ValorantTracker extends JFrame {
                  } catch (Exception e) {
                      e.printStackTrace();
                  }
-
-                 //DEBUG!
-                 System.out.println(propertyChangeEvent.getPropertyName());
-
              }
          });
 
