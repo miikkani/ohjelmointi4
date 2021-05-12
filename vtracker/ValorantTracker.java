@@ -98,17 +98,20 @@ public class ValorantTracker extends JFrame {
          sp.setPreferredSize((new Dimension(300, 263)));
 
 
+         /** Creating Dialogs for buttons */
+         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents, db);
+         DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest", db);
+         DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All", db);
+
          /** Add Match Button */
          JButton addbutton = new JButton("Add Match");
          addbutton.setPreferredSize(new Dimension(110,35));
-         AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents, db);
 
          //Listener to open AddMatchDialog on button click
          addbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
                  addmatchdialog.setVisible(true);
-
              }
          });
 
@@ -131,7 +134,6 @@ public class ValorantTracker extends JFrame {
          /** Delete Latest Button */
          JButton delbutton = new JButton("Delete Latest");
          delbutton.setPreferredSize(new Dimension(110,35));
-         DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest", db);
 
          //Listener to open DeleteLatestDialog on button click
          delbutton.addActionListener(new ActionListener() {
@@ -159,7 +161,6 @@ public class ValorantTracker extends JFrame {
          /** Delete All Button */
          JButton delallbutton = new JButton("Delete All");
          delallbutton.setPreferredSize(new Dimension(110,35));
-         DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All", db);
 
          //Listener to open DeleteAllDialog on button click
          delallbutton.addActionListener(new ActionListener() {
