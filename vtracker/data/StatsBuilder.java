@@ -4,27 +4,26 @@ package vtracker.data;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-/**     !!Work In Progress!!
- *
- * This class calculates statistics from given match database.
- *
- * TODO:
- *  - Make this a factory class etc.?
+/**
+ * A builder class for calculating win percentages.
  *
  */
 public class StatsBuilder {
     private double overallWinP;
 
-    private String[] agents;
-    private VtrackerDatabase db;
+    private final String[] agents;
+    private final VtrackerDatabase db;
     private ArrayList<Match> matches;
 
-    private Hashtable<String, Double> winpercentages;
+    private final Hashtable<String, Double> winpercentages;
 
 
 
     /**
-     * Main constructor.
+     * Class constructor specifying database and list of agents.
+     *
+     * @param db        the database containing match data
+     * @param agents    the array containing name of agents
      */
     public StatsBuilder(VtrackerDatabase db, String[] agents) {
         this.db = db;
@@ -36,58 +35,45 @@ public class StatsBuilder {
 
     }
 
-
     /**
-     *
-     */
-    /**
-     * Maybe...
-     */
-    private double calculateWinPercent() {
-
-
-        return 0.0;
-    }
-
-
-    /**
-     * Calculates all percentages and updates internal data
-     * structures. Make this run in own thread.
-     *
+     * Calculates win percentages for all agents. Updates internal data
+     * structure for queries.
      */
     public void calculateStats() {
 
-        for(int i = 0; i< agents.length; ++i) {
+        for (String agent : agents) {
             int total = 0;
             double winp = 0.0;
             int wins = 0;
-            for(Match m : matches) {
-                if(m.getAgent().equals(agents[i])) {
+            for (Match m : matches) {
+                if (m.getAgent().equals(agent)) {
                     total++;
                     if (m.getResult() == MatchResult.WIN &&
-                            m.getAgent().equals(agents[i])) {
+                            m.getAgent().equals(agent)) {
                         wins++;
                     }
                 }
             }
-            if(total != 0)winp = ((double)wins)/ ((double)total);
+            if (total != 0) winp = ((double) wins) / ((double) total);
 
-            winpercentages.put(agents[i], winp);
+            winpercentages.put(agent, winp);
         }
     }
 
     /**
-     * Returns a collection of agents and their current winpercentages.
+     * Returns a collection of agents and their current win percentages.
      *
-     * @return          a Hashtable containing agents and winpercentages.
+     * @return          a Hashtable containing agents and win percentages.
      */
     public Hashtable<String, Double> getStats() {
         return winpercentages;
     }
 
-
     /**
-     * Maybe...
+     * Returns overall win percentage. Calculates win percentage of current
+     * matches and returns the result as a double.
+     *
+     * @return          a floating point number representing win percentage
      */
     public double getOverallWinPercentage() {
             int total = matches.size();
@@ -103,9 +89,9 @@ public class StatsBuilder {
             return winp;
     }
 
-
     /**
-     * Gets latest data from database.
+     * Gets latest data from database. Queries database for all matches and
+     * stores them to List.
      */
     public void refresh() {
        try {
@@ -115,14 +101,4 @@ public class StatsBuilder {
            System.out.println("Error with database!");
        }
     }
-
-
-
-
-
-
-
-
-
-
 }
