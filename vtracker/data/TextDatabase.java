@@ -50,7 +50,7 @@ public class TextDatabase implements VtrackerDatabase {
         try(BufferedReader in = new BufferedReader(new FileReader(this.file))){
             while((match = in.readLine()) != null) {
                 tokens = match.split(":");
-                m.add(new Match(tokens[1], MatchResult.valueOf(tokens[2])));
+                m.add(new Match(Long.parseLong(tokens[0]),tokens[1], MatchResult.valueOf(tokens[2])));
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
