@@ -1,6 +1,9 @@
 package vtracker.data;
 
 
+/**
+ *
+ */
 public class Match {
     private final String agent;
     private final MatchResult result;
