@@ -23,7 +23,7 @@ public class TextDatabase implements VtrackerDatabase {
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.out.print("Cannot create database! ");
-                ioe.getMessage();
+                System.out.println(ioe.getMessage());
             }
         }
     }
