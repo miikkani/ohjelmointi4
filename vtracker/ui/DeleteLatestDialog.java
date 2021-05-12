@@ -80,8 +80,15 @@ public class DeleteLatestDialog extends JDialog{
         pack();
         setResizable(false);
         setLocationRelativeTo(frame);
-
     }
+
+    /**
+     * Updates DeleteLatestDialog info text to
+     * show what match user is about to delete
+     * or if database is empty.
+     *
+     * @param db    instance of TextDatabase
+     */
     public void updateLatestMatch(VtrackerDatabase db){
         try {
             Match m = db.getLatestMatch();
