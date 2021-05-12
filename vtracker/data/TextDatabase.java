@@ -109,8 +109,7 @@ public class TextDatabase implements VtrackerDatabase {
 
     @Override
     public boolean deleteLatestMatch() {
-        try {
-            RandomAccessFile f = new RandomAccessFile(this.file, "rw");
+        try (RandomAccessFile f = new RandomAccessFile(this.file, "rw")) {
             long length = f.length() - 1;
             byte b;
             do {
@@ -129,7 +128,6 @@ public class TextDatabase implements VtrackerDatabase {
             return true;
 
         } catch (IOException ioe) {
-            //ioe.printStackTrace();
             System.out.println("Could not delete latest match.");
             return false;
         }
