@@ -34,12 +34,6 @@ public class ValorantTracker extends JFrame {
          // agents, db and stats
          initializeData();
 
-         //Get matches from database
-         ArrayList<Match> matches = new ArrayList<>();
-         try {
-             matches = db.getMatches();
-         } catch (Exception e) {e.printStackTrace();}
-
          // build interface
          this.setSize(460,460);
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,6 +96,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
+         // Update UI when there is changes in database
          addmatchdialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -116,7 +111,6 @@ public class ValorantTracker extends JFrame {
 
                  //DEBUG!
                  System.out.println(propertyChangeEvent.getPropertyName());
-
              }
          }
          );

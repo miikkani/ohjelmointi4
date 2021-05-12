@@ -71,8 +71,6 @@ public class StatsBuilder {
                 }
             }
             if(total != 0)winp = ((double)wins)/ ((double)total);
-            System.out.print(winp + " ");
-            System.out.println(agents[i]);
 
             winpercentages.put(agents[i], winp);
         }
@@ -101,7 +99,6 @@ public class StatsBuilder {
                     }
                 }
             if(total != 0)winp = ((double)wins)/ ((double)total);
-            System.out.print(winp + " ");
 
             return winp;
     }
