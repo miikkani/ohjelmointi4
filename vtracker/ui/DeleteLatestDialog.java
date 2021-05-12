@@ -2,6 +2,8 @@ package vtracker.ui;
 
 import vtracker.ValorantTracker;
 import vtracker.data.VtrackerDatabase;
+import vtracker.data.Match;
+import vtracker.data.MatchResult;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,10 +83,12 @@ public class DeleteLatestDialog extends JDialog{
     }
     public void updateLatestMatch(VtrackerDatabase db){
         try {
-            matchlabel.setText(db.getLatestMatch().toString());
+            Match m = db.getLatestMatch();
+            matchlabel.setText(m.getAgent() + " - " + m.getResult());
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }
