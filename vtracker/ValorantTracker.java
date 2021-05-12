@@ -28,7 +28,7 @@ public class ValorantTracker extends JFrame {
     StatsBuilder stats;
 
      ValorantTracker() {
-         super("ValorantTracker");
+         super("Valorant Tracker");
 
          // initialize data and handling
          // agents, db and stats
@@ -40,12 +40,14 @@ public class ValorantTracker extends JFrame {
 
 
 
-         //Add label to the panel
+
+         /** Overall win percentage panel */
          JLabel owinlabel1 = new JLabel();
          owinlabel1.setText("Overall Win Percentage:");
          owinlabel1.setHorizontalAlignment(JLabel.CENTER);
          owinlabel1.setBorder(BorderFactory.createEmptyBorder(5,20,0,20));
          owinlabel1.setFont(owinlabel1.getFont().deriveFont(30.0f));
+
          JLabel owinlabel2 = new JLabel();
          owinlabel2.setText(formatOverallWinp());
          owinlabel2.setHorizontalAlignment(JLabel.CENTER);
@@ -59,19 +61,34 @@ public class ValorantTracker extends JFrame {
          owinpanel.add(owinlabel1); owinpanel.add(owinlabel2);
 
 
-         // Build table for agent win percentages
-         String[] column ={"Agent","Win Percentage"};
+         /** Agent win percentage table */
+         String[] column ={"Agent:","Win Percentage:"};
          DefaultTableModel model = new DefaultTableModel(formatStats(stats.getStats()), column);
+
+         //Override to make cells not editable
          JTable agentwinptable = new JTable(model){
              @Override
-             public boolean isCellEditable(int row, int column) { //Override to make cells not editable
+             public boolean isCellEditable(int row, int column) {
                  return false;
              }
          };
 
-//         agentwinptable.getTableHeader().setReorderingAllowed(false);
+         //Paint every second row gray
+         agentwinptable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+             @Override
+             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                 final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                 c.setBackground(row % 2 == 0 ? Color.LIGHT_GRAY : Color.WHITE);
+                 return this;
+             }
+         });
+
+         //Make table noninteractive
+         agentwinptable.getTableHeader().setReorderingAllowed(false);
          agentwinptable.setFocusable(false);
-//         agentwinptable.setShowHorizontalLines(false);
+
+         //Remove horizontal lines
+         agentwinptable.setShowHorizontalLines(false);
          agentwinptable.setRowSelectionAllowed(false);
 
          //Headers start from left
@@ -180,7 +197,7 @@ public class ValorantTracker extends JFrame {
          this.setLayout(layout);
 
          gbc.fill = GridBagConstraints.HORIZONTAL;
-         gbc.insets = new Insets(5,5,5,5);
+         gbc.insets = new Insets(10,10,0,10);
          gbc.gridx = 0;
          gbc.gridy = 0;
          gbc.gridwidth = 4;
@@ -193,6 +210,7 @@ public class ValorantTracker extends JFrame {
          gbc.gridwidth = 1;
          gbc.fill = GridBagConstraints.NONE;
          gbc.anchor = GridBagConstraints.WEST;
+         gbc.insets = new Insets(10,10,10,0);
          this.add(addbutton, gbc); //Add Match button added
          gbc.gridx = 1;
          gbc.gridy = 2;
@@ -200,9 +218,14 @@ public class ValorantTracker extends JFrame {
          gbc.gridx = 3;
          gbc.gridy = 2;
          gbc.anchor = GridBagConstraints.EAST;
+         gbc.insets = new Insets(10,5,10,10);
          this.add(delallbutton, gbc); //Delete All button added
 
+         /** JFrame settings */
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setLocationRelativeTo(null);
+         this.pack();
+         this.setResizable(false);
          this.setVisible(true);
 
     }
