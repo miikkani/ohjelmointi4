@@ -78,6 +78,7 @@ public class ValorantTracker extends JFrame {
 
          //Make table noninteractive
          agentwinptable.getTableHeader().setReorderingAllowed(false);
+         agentwinptable.getTableHeader().setResizingAllowed(false);
          agentwinptable.setFocusable(false);
 
          //Remove horizontal lines
