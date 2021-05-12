@@ -225,7 +225,7 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * Format stats for UI
+     * Format stats for UI.
      *
      * @param stats list of matches
      * @return two dimensional array of agents and their winp
@@ -245,9 +245,9 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * Format overall winpercentage for UI
+     * Format overall win percentage for UI.
      *
-     * @return      formatted winpercentage
+     * @return      a string of formatted win percentage
      */
     private String formatOverallWinp() {
         String formatted;
