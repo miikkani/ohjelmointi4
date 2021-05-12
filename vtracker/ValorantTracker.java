@@ -39,8 +39,6 @@ public class ValorantTracker extends JFrame {
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-
-
          /** Overall win percentage panel **/
          JLabel owinlabel1 = new JLabel();
          owinlabel1.setText("Overall Win Percentage:");
@@ -235,7 +233,6 @@ public class ValorantTracker extends JFrame {
          this.pack();
          this.setResizable(false);
          this.setVisible(true);
-
     }
 
     /**

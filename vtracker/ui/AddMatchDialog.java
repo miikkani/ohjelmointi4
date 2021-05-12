@@ -14,12 +14,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+/**
+ * AddMatchDialog UI for adding a match
+ * to the TextDatabase with selected
+ * agent and outcome.
+ *
+ */
+
 public class AddMatchDialog extends JDialog{
 
     public AddMatchDialog(Frame frame, String title, String[] agents, VtrackerDatabase db){
         super(frame, title, true);
 
-        /** Label texts **/
+        /** Label text for agent select **/
         JLabel agentlabel = new JLabel();
         agentlabel.setText("Select Agent:");
 
@@ -27,19 +34,20 @@ public class AddMatchDialog extends JDialog{
         final JList<String>agentlist = new JList<>(agents);
         JScrollPane agentlistScroller = new JScrollPane(agentlist);
 
-        /** Radiobuttons for match Outcome **/
+        /** RadioButtons for match Outcome **/
         JRadioButton victoryrb = new JRadioButton("Victory", true);
         JRadioButton defeatrb = new JRadioButton("Defeat");
         JRadioButton drawrb = new JRadioButton("Draw");
         ButtonGroup bg = new ButtonGroup();
         bg.add(victoryrb); bg.add(defeatrb); bg.add(drawrb);
 
+        //Panel and border for RadioButtons
         JPanel outcomepanel = new JPanel();
         outcomepanel.setLayout(new GridLayout(3,1));
         outcomepanel.setBorder(BorderFactory.createTitledBorder("Outcome:"));
         outcomepanel.add(victoryrb); outcomepanel.add(defeatrb); outcomepanel.add(drawrb);
 
-        /** Ok and Cancel Buttons **/
+        /** Ok button **/
         JButton okbutton = new JButton("Ok");
         okbutton.setPreferredSize(new Dimension(110,35));
         okbutton.addActionListener(new ActionListener() {
@@ -57,13 +65,14 @@ public class AddMatchDialog extends JDialog{
                     if(defeatrb.isSelected()){ result = MatchResult.LOSS; }
                     if(drawrb.isSelected()){ result = MatchResult.DRAW; }
 
-                    db.addMatch(new Match(agent, result));
+                    db.addMatch(new Match(agent, result)); //Adds a match to the database
                     setVisible(false);
                     firePropertyChange("Database updated", false, true);
                     }
             }
         });
 
+        /** Cancel button **/
         JButton cancelbutton = new JButton("Cancel");
         cancelbutton.setPreferredSize(new Dimension(110,35));
         cancelbutton.addActionListener(new ActionListener() {
@@ -71,7 +80,7 @@ public class AddMatchDialog extends JDialog{
             public void actionPerformed(ActionEvent e) { setVisible(false); }
         });
 
-        /** Layout for the dialog **/
+        /** GridBagLayout for the dialog **/
         GridBagLayout gblayout = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         setLayout(gblayout);

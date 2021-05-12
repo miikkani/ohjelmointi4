@@ -8,10 +8,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * DeleteLatestDialog UI for deleting
+ * latest entry to the TextDatabase.
+ *
+ */
+
 public class DeleteLatestDialog extends JDialog{
     public DeleteLatestDialog(Frame frame, String title, VtrackerDatabase db){
         super(frame, title, true);
 
+        /** Text to warn the user of what is being deleted */
         LayoutManager layout = new GridLayout(3,1);
         JPanel textpanel = new JPanel(layout);
         textpanel.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
@@ -19,17 +26,19 @@ public class DeleteLatestDialog extends JDialog{
         textpanel.add(new JLabel("Killjoy - Victory", JLabel.CENTER));
         textpanel.add(new JLabel("Continue?", JLabel.CENTER));
 
+        /** Ok Button */
         JButton okbutton = new JButton("Ok");
         okbutton.setPreferredSize(new Dimension(110,35));
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                db.deleteLatestMatch();
+                db.deleteLatestMatch(); //Deletes latest match in database
                 setVisible(false);
                 firePropertyChange("OK clicked", true, false);
             }
         });
 
+        /** Cancel Button */
         JButton cancelbutton = new JButton("Cancel");
         cancelbutton.setPreferredSize(new Dimension(110,35));
         cancelbutton.addActionListener(new ActionListener() {
@@ -39,6 +48,7 @@ public class DeleteLatestDialog extends JDialog{
             }
         });
 
+        /** GridBagLayout for the dialog **/
         GridBagLayout gblayout = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
         setLayout(gblayout);
