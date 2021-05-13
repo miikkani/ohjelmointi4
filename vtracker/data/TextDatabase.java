@@ -1,10 +1,14 @@
 package vtracker.data;
 
 import java.io.*;
-
 import java.util.ArrayList;
 
 
+/**
+ * Database using text file. Converts {@link Match} objects to and from text
+ * representation and implements database operations.
+ *
+ */
 public class TextDatabase implements VtrackerDatabase {
     private static TextDatabase db;
     private final File file;
@@ -12,14 +16,7 @@ public class TextDatabase implements VtrackerDatabase {
     private TextDatabase(String path){
         this.file = new File(path);
         if(!file.exists()){
-            try {
-                if(file.createNewFile()) {
-                System.out.println("Created new database file...");
-                } else {
-                    System.out.println(
-                            "Cannot create database file,"
-                            + "file already exists!");
-                }
+            try { file.createNewFile();
             } catch (IOException ioe) {
                 ioe.printStackTrace();
                 System.out.print("Cannot create database! ");
@@ -29,10 +26,11 @@ public class TextDatabase implements VtrackerDatabase {
     }
 
     /**
-     * Creates new database or returns a reference if it already exists.
+     * Returns a {@link TextDatabase} instance. Creates database object once and
+     * returns a reference if database object already exists.
      *
-     * @param path      the location of the database file
-     * @return          an instance of the database
+     * @param path      a string representing the path of the database file
+     * @return          a TextDatabase instance
      */
     public static TextDatabase getInstance(String path) {
         if(db == null) {
@@ -123,7 +121,6 @@ public class TextDatabase implements VtrackerDatabase {
                 f.setLength(length + 1);
             }
             System.out.println("Deleted last match in " + this.file);
-
             return true;
 
         } catch (IOException ioe) {
