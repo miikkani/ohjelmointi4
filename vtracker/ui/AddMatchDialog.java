@@ -53,9 +53,19 @@ public class AddMatchDialog extends JDialog{
         okbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(agentlist.isSelectionEmpty()){ //If no agent is selected warn user!
+                if(agentlist.isSelectionEmpty()){
+                    //If no agent is selected create and show a error message
                     String message = "<html><body><div width='200px' align='center'>SELECT AGENT before adding a match!</div></body></html>";
-                    JOptionPane.showMessageDialog(AddMatchDialog.super.rootPane, message,"", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane errorpane = new JOptionPane(message,JOptionPane.PLAIN_MESSAGE);
+
+                    //Resizing button inside the errorpane
+                    JPanel buttonpanel = (JPanel)errorpane.getComponent(1);
+                    JButton okbutton2 = (JButton)buttonpanel.getComponent(0);
+                    okbutton2.setText("Ok");
+                    okbutton2.setPreferredSize(new Dimension(110,35));
+                    okbutton2.validate();
+                    JDialog errordialog = errorpane.createDialog(null);
+                    errordialog.setVisible(true);
                 }
                 else{ //Otherwise add match and hide dialog
 
