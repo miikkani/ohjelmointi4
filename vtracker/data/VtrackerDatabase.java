@@ -3,20 +3,22 @@ package vtracker.data;
 import java.util.ArrayList;
 
 /**
- * This is a general API for database operations in ValorantTracker.
+ * Provides general interface for database implementations. This interface
+ * is used in all communications between application and database.
  */
 public interface VtrackerDatabase {
 
     /**
-     * Returns a list of Match objects from the database.
+     * Returns an ArrayList of {@link Match} objects from the database.
      *
-     * @return              list of Match objects
+     * @return              an ArrayList of Match objects
      * @throws Exception    if operation failed.
      */
     ArrayList<Match> getMatches() throws Exception;
 
     /**
-     * Returns latest match from the database.
+     * Returns a {@link Match} object representing latest match from
+     * the database.
      *
      * @return              a match object representing one match
      * @throws Exception    if operation failed.
@@ -25,28 +27,28 @@ public interface VtrackerDatabase {
 
     /**
      * Adds new match to the database. Returns true if operation was
-     * successful and false if there was a problem.
+     * successful.
      *
      * @param match         a match to be added
-     * @return              a boolean of whether operation completed
+     * @return              true if operation was successful
      */
     boolean addMatch(Match match);
 
     /**
      * Deletes database. Returns true if operation was
-     * successful and false if there was a problem.
+     * successful.
      *
      *
-     * @return              a boolean of whether operation completed
+     * @return              true if operation was successful
      */
-    boolean deleteDatabase() ;
+    boolean deleteDatabase();
 
     /**
-     * Deletes latest added match. Returns true if operation was
-     * successful and false if there was a problem.
+     * Deletes latest match. Returns true if operation was
+     * successful.
      *
      *
-     * @return              a boolean of whether operation completed
+     * @return              true if operation was successful
      */
     boolean deleteLatestMatch() ;
 
