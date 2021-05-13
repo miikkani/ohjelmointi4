@@ -95,7 +95,16 @@ public class DeleteLatestDialog extends JDialog{
             if (m == null){
                 matchlabel.setText("Database empty!");
             } else {
-                matchlabel.setText(m.getAgent() + " - " + m.getResult());
+                MatchResult result = m.getResult();
+                if (result == MatchResult.WIN) {
+                    matchlabel.setText(m.getAgent() + " - Victory");
+                }
+                if (result == MatchResult.LOSS) {
+                    matchlabel.setText(m.getAgent() + " - Defeat");
+                }
+                if (result == MatchResult.DRAW) {
+                    matchlabel.setText(m.getAgent() + " - Draw");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
