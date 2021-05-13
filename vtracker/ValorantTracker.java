@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-//import java.util.Hashtable;
 import java.text.NumberFormat;
 import java.util.Hashtable;
 
@@ -18,8 +16,15 @@ import vtracker.data.*;
 import vtracker.ui.*;
 
 /**
- * ValorantTracker. Epic Application #1.
- * This is the main class for application.
+ * ValorantTracker is an application for
+ * following personal win percentages of agents in Valorant game. User
+ * can save matches to database and application shows overall win percentage
+ * and agent specific win percentages.
+ * <p>
+ * Every match has name of the agent
+ * used in match, result of the match and a timestamp when match was added
+ * to the database. Timestamps are not currently in use and are implemented for
+ * use in possible future versions.
  *
  */
 public class ValorantTracker extends JFrame {
@@ -27,14 +32,17 @@ public class ValorantTracker extends JFrame {
     VtrackerDatabase db;
     StatsBuilder stats;
 
+    /**
+     * Constructor for ValorantTracker. Connects to database and builds
+     * user interface.
+     */
      ValorantTracker() {
          super("Valorant Tracker");
 
-         // initialize data and handling
-         // agents, db and stats
+         /* setup data structures and operations */
          initializeData();
 
-         /** Overall win percentage panel **/
+         /* Overall win percentage panel */
          JLabel owinlabel1 = new JLabel();
          owinlabel1.setText("Overall Win Percentage:");
          owinlabel1.setHorizontalAlignment(JLabel.CENTER);
@@ -54,11 +62,11 @@ public class ValorantTracker extends JFrame {
          owinpanel.add(owinlabel1); owinpanel.add(owinlabel2);
 
 
-         /** Agent win percentage table **/
+         /* Agent win percentage table */
          String[] column ={"Agent:","Win Percentage:"};
          DefaultTableModel model = new DefaultTableModel(formatStats(stats.getStats()), column);
 
-         //Override to make cells not editable
+         /* Override to make cells not editable */
          JTable agentwinptable = new JTable(model){
              @Override
              public boolean isCellEditable(int row, int column) {
@@ -66,7 +74,7 @@ public class ValorantTracker extends JFrame {
              }
          };
 
-         //Paint every second row gray
+         /* Paint every second row gray */
          agentwinptable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
              @Override
              public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -76,34 +84,34 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         //Make table noninteractive
+         /* Make table not interactive */
          agentwinptable.getTableHeader().setReorderingAllowed(false);
          agentwinptable.getTableHeader().setResizingAllowed(false);
          agentwinptable.setFocusable(false);
 
-         //Remove horizontal lines
+         /* Remove horizontal lines */
          agentwinptable.setShowHorizontalLines(false);
          agentwinptable.setRowSelectionAllowed(false);
 
-         //Headers start from left
+         /* Headers start from left */
          DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) agentwinptable.getTableHeader().getDefaultRenderer();
          renderer.setHorizontalAlignment(JLabel.LEFT);
 
-         //Add the table to scrollpane
+         /* Add the table to scrollpane */
          JScrollPane sp = new JScrollPane(agentwinptable);
          sp.setPreferredSize((new Dimension(300, 263)));
 
 
-         /** Creating Dialogs for buttons */
+         /* Creating Dialogs for buttons */
          AddMatchDialog addmatchdialog = new AddMatchDialog(this,"Add Match", agents, db);
          DeleteLatestDialog deletelatestdialog = new DeleteLatestDialog(this, "Delete Latest", db);
          DeleteAllDialog deletealldialog = new DeleteAllDialog(this, "Delete All", db);
 
-         /** Add Match Button */
+         /* Add Match Button */
          JButton addbutton = new JButton("Add Match");
          addbutton.setPreferredSize(new Dimension(110,35));
 
-         //Listener to open AddMatchDialog on button click
+         /* Listener to open AddMatchDialog on button click */
          addbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -111,7 +119,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         //Listener to update win% elements when exiting dialog
+         /* Listener to update win% elements when exiting dialog */
          addmatchdialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -128,11 +136,11 @@ public class ValorantTracker extends JFrame {
          }
          );
 
-         /** Delete Latest Button */
+         /* Delete Latest Button */
          JButton delbutton = new JButton("Delete Latest");
          delbutton.setPreferredSize(new Dimension(110,35));
 
-         //Listener to open DeleteLatestDialog on button click
+         /* Listener to open DeleteLatestDialog on button click */
          delbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -140,7 +148,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         //Listener to update win% elements when exiting dialog
+         /* Listener to update win% elements when exiting dialog */
          deletelatestdialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -155,11 +163,11 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         /** Delete All Button */
+         /* Delete All Button */
          JButton delallbutton = new JButton("Delete All");
          delallbutton.setPreferredSize(new Dimension(110,35));
 
-         //Listener to open DeleteAllDialog on button click
+         /* Listener to open DeleteAllDialog on button click */
          delallbutton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -167,7 +175,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-         //Listener to update win% elements when exiting dialog
+         /* Listener to update win% elements when exiting dialog */
          deletealldialog.addPropertyChangeListener(new PropertyChangeListener() {
              @Override
              public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
@@ -183,8 +191,7 @@ public class ValorantTracker extends JFrame {
              }
          });
 
-
-         /** GridBagLayout to position main screen elements */
+         /* GridBagLayout to position main screen elements */
          GridBagLayout layout = new GridBagLayout();
          GridBagConstraints gbc = new GridBagConstraints();
          this.setLayout(layout);
@@ -214,7 +221,7 @@ public class ValorantTracker extends JFrame {
          gbc.insets = new Insets(10,5,10,10);
          this.add(delallbutton, gbc); //Delete All button added
 
-         /** JFrame settings */
+         /* JFrame settings */
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.pack();
          this.setLocationRelativeTo(null);
@@ -223,12 +230,12 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * Format stats for UI.
+     * Format stats for JTable
      *
      * @param stats list of matches
-     * @return two dimensional array of agents and their winp
+     * @return two dimensional string array of agents and their win percentages.
      */
-    public String[][] formatStats(Hashtable<String, Double> stats) {
+    private String[][] formatStats(Hashtable<String, Double> stats) {
         NumberFormat nf = NumberFormat.getPercentInstance();
         nf.setMaximumFractionDigits(0);
 
@@ -243,20 +250,19 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * Format overall win percentage for UI.
+     * Format overall win percentage as a string for JLabel.
      *
-     * @return      a string of formatted win percentage
+     * @return      a formatted string representing win percentage
      */
     private String formatOverallWinp() {
-        String formatted;
         NumberFormat nf = NumberFormat.getPercentInstance();
         nf.setMaximumFractionDigits(0);
-
         return nf.format(stats.getOverallWinPercentage());
     }
 
-    /**
-     * initialize datastructures and database operations
+    /*
+     * initializes list of agents, connects to database and
+     * builds initial statistics.
      */
     private void initializeData() {
         agents = getAgents();
@@ -264,14 +270,13 @@ public class ValorantTracker extends JFrame {
         stats = new StatsBuilder(db, agents);
         stats.refresh();
         stats.calculateStats();
-
     }
 
 
     /**
-     * Returns a reference list of all agents in Valorant.
+     * Returns a string array of all agents in Valorant.
      *
-     * @return agents      an array of agent names
+     * @return agents      a string array of agent names
      */
     private String[] getAgents() {
 
@@ -295,7 +300,7 @@ public class ValorantTracker extends JFrame {
     }
 
     /**
-     * ValorantTracker. Starts application, builds UI and initializes database.
+     * ValorantTracker entry point. Starts application in thread.
      *
      * @param args          array of command line arguments
      */
