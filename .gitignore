@@ -3,6 +3,9 @@
 # Misc.
 #
 
+#javadoc
+javadoc/
+javadoc/*
 # Vim
 *.swp
 
