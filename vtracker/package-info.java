@@ -1,4 +1,4 @@
 /**
- * Provides ValorantTracker main class and entrypoint to application.
+ * Provides all required classes and interfaces for ValorantTracker application.
  */
 package vtracker;
