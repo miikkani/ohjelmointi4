@@ -72,6 +72,7 @@ public class AddMatchDialog extends JDialog{
                     db.addMatch(new Match(agent, result)); //Adds a match to the database
                     setVisible(false);
                     agentlist.clearSelection();
+                    victoryrb.setSelected(true);
                     firePropertyChange("Database updated", false, true);
                     }
             }
@@ -85,6 +86,7 @@ public class AddMatchDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 agentlist.clearSelection();
+                victoryrb.setSelected(true);
             }
         });
 
