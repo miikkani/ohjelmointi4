@@ -10,6 +10,8 @@
 db.txt
 
 
+
+
 # from github/gitignore
 # vscode.gitignore
 .vscode/
@@ -27,6 +29,10 @@ db.txt
 ##################################
 # JAVA     
 # 
+
+# misc
+META-INF/
+META-INF/*
 
 # Compiled class file
 *.class
