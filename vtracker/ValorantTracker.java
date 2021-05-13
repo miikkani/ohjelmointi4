@@ -28,8 +28,19 @@ import vtracker.ui.*;
  *
  */
 public class ValorantTracker extends JFrame {
+    /**
+     * List of all agents in Valorant.
+     */
     String[] agents;
+
+    /**
+     * Database of all matches.
+     */
     VtrackerDatabase db;
+
+    /**
+     * StatsBuilder is used to calculate and retrieve win percentages.
+     */
     StatsBuilder stats;
 
     /**
