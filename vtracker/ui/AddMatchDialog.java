@@ -71,6 +71,7 @@ public class AddMatchDialog extends JDialog{
 
                     db.addMatch(new Match(agent, result)); //Adds a match to the database
                     setVisible(false);
+                    agentlist.clearSelection();
                     firePropertyChange("Database updated", false, true);
                     }
             }
@@ -81,7 +82,10 @@ public class AddMatchDialog extends JDialog{
         cancelbutton.setPreferredSize(new Dimension(110,35));
         cancelbutton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { setVisible(false); }
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                agentlist.clearSelection();
+            }
         });
 
         /** GridBagLayout for the dialog **/
