@@ -1,13 +1,11 @@
 package vtracker.ui;
 
-import vtracker.data.TextDatabase;
 import vtracker.data.VtrackerDatabase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 /**
  * DeleteAllDialog UI for deleting

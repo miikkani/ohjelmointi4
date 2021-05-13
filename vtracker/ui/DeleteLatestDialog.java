@@ -1,15 +1,13 @@
 package vtracker.ui;
 
-import vtracker.ValorantTracker;
-import vtracker.data.VtrackerDatabase;
 import vtracker.data.Match;
 import vtracker.data.MatchResult;
+import vtracker.data.VtrackerDatabase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * DeleteLatestDialog UI for deleting

@@ -1,18 +1,13 @@
 package vtracker.ui;
 
-import vtracker.ValorantTracker;
 import vtracker.data.Match;
 import vtracker.data.MatchResult;
 import vtracker.data.VtrackerDatabase;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 /**
  * AddMatchDialog UI for adding a match
@@ -20,7 +15,6 @@ import java.util.Arrays;
  * agent and outcome.
  *
  */
-
 public class AddMatchDialog extends JDialog{
 
     public AddMatchDialog(Frame frame, String title, String[] agents, VtrackerDatabase db){

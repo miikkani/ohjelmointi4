@@ -61,15 +61,11 @@ public class TextDatabase implements VtrackerDatabase {
 
     @Override
     public Match getLatestMatch() throws IOException {
-        try {
-            ArrayList<Match> matches = getMatches();
-            if(matches.size() != 0) {
-                return matches.get(matches.size() - 1);
-            } else {
-                return null;
-            }
-        } catch(IOException ioe) {
-            throw ioe;
+        ArrayList<Match> matches = getMatches();
+        if(matches.size() != 0) {
+            return matches.get(matches.size() - 1);
+        } else {
+            return null;
         }
 
 
